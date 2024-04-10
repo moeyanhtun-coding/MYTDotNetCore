@@ -16,7 +16,7 @@ stringBuilder.Password = "sa@123"; // db password
 SqlConnection connection = new SqlConnection(stringBuilder.ConnectionString);
 
 connection.Open();
-Console.WriteLine("Connection Success");
+Console.WriteLine("Connection Open");
 
 string query = "select * from Tbl_Blog";
 SqlCommand cmd = new SqlCommand(query, connection);
