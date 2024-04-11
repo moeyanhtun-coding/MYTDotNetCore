@@ -9,8 +9,11 @@ Console.WriteLine("Hello, World!");
 // => c# => db connection 
 
 AdoDotNetExample adoDotNetExample = new AdoDotNetExample();
-adoDotNetExample.Read();
+//adoDotNetExample.Read();
 //adoDotNetExample.Create("this is title", "this is Author", "this is Content");
+//adoDotNetExample.Delete(11);
+//adoDotNetExample.Update(10, "this is Moe Yan Htun", "this is from Myanmar", "this is Web Developer");
+adoDotNetExample.Edit(11);
 // Ado.Net Read
 // CRUD
 
