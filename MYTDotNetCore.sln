@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{
 		Readme.md = Readme.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MYTDotNetCore.WebRestApi", "MYTDotNetCore.WebRestApi\MYTDotNetCore.WebRestApi.csproj", "{B8DCC90E-039D-4C32-9952-8BFD2C500797}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{70500AA5-49FD-4020-980D-1041C7AB2782}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{70500AA5-49FD-4020-980D-1041C7AB2782}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{70500AA5-49FD-4020-980D-1041C7AB2782}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8DCC90E-039D-4C32-9952-8BFD2C500797}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8DCC90E-039D-4C32-9952-8BFD2C500797}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8DCC90E-039D-4C32-9952-8BFD2C500797}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8DCC90E-039D-4C32-9952-8BFD2C500797}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

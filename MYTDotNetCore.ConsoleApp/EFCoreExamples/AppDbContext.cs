@@ -9,9 +9,10 @@ namespace MYTDotNetCore.ConsoleApp
 {
     internal class AppDbContext : DbContext
     {
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
+            optionsBuilder.UseSqlServer(Services.ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
 
                 }
         public DbSet<BlogDto> Blogs { get; set; }

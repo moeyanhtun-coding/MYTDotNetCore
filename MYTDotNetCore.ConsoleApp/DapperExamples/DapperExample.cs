@@ -6,8 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Dapper;
+using MYTDotNetCore.ConsoleApp.Dtos;
+using MYTDotNetCore.ConsoleApp.Services;
 
-namespace MYTDotNetCore.ConsoleApp
+namespace MYTDotNetCore.ConsoleApp.DapperExamples
 {
     internal class DapperExample
     {
@@ -25,7 +27,8 @@ namespace MYTDotNetCore.ConsoleApp
         {
             using IDbConnection db = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
             List<BlogDto> lst = db.Query<BlogDto>("select * from Tbl_blog").ToList();
-            foreach (BlogDto blog in lst) { 
+            foreach (BlogDto blog in lst)
+            {
                 Console.WriteLine(blog.BlogId);
                 Console.WriteLine(blog.BlogTitle);
                 Console.WriteLine(blog.BlogAuthor);
@@ -38,7 +41,7 @@ namespace MYTDotNetCore.ConsoleApp
         public void Edit(int id)
         {
             using IDbConnection db = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
-            var item = db.Query<BlogDto>("select * from Tbl_blog where BlogId = @BlogId", new BlogDto { BlogId = id }).FirstOrDefault<BlogDto>();
+            var item = db.Query<BlogDto>("select * from Tbl_blog where BlogId = @BlogId", new BlogDto { BlogId = id }).FirstOrDefault();
             if (item is null)
             {
                 Console.WriteLine("No Data Found");
@@ -74,13 +77,14 @@ namespace MYTDotNetCore.ConsoleApp
             string message = result > 0 ? "Saving Successful" : "Saving Failed";
             Console.WriteLine(message);
         }
-        public void Update(int id, string title, string author, string content) {
+        public void Update(int id, string title, string author, string content)
+        {
             var item = new BlogDto()
             {
                 BlogId = id,
                 BlogTitle = title,
-                BlogAuthor = author,    
-                BlogContent = content   
+                BlogAuthor = author,
+                BlogContent = content
             };
 
             string query = @"UPDATE [dbo].[Tbl_Blog]
@@ -93,7 +97,8 @@ namespace MYTDotNetCore.ConsoleApp
             var message = result > 0 ? "Update Successful" : "Update Fail";
             Console.WriteLine(message);
         }
-        public void Delete(int id) {
+        public void Delete(int id)
+        {
             var item = new BlogDto
             {
                 BlogId = id
