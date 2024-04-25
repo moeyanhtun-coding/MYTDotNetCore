@@ -15,6 +15,7 @@ namespace MYTDotNetCore.ConsoleApp
             InitialCatalog = "MYTDotNetCore",
             UserID = "sa",
             Password = "sa@123",
+            TrustServerCertificate = true,
         };
     }
 }
