@@ -53,8 +53,8 @@ namespace MYTDotNetCore.ConsoleApp
                 BlogContent = content
             };
 
-             db.Blogs.Add(item);
-           int result = db.SaveChanges();
+            db.Blogs.Add(item);
+            int result = db.SaveChanges();
             string message = result > 0 ? "Creating Success" : "Creating Fail";
             Console.WriteLine(message);
         }

@@ -14,8 +14,8 @@ namespace MYTDotNetCore.ConsoleApp
         {
             optionsBuilder.UseSqlServer(Services.ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
 
-                }
+        }
         public DbSet<BlogDto> Blogs { get; set; }
     }
-    
+
 }
