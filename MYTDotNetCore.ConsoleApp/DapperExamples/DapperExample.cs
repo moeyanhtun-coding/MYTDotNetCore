@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Dapper;
-using MYTDotNetCore.ConsoleApp.Dtos;
+//using MYTDotNetCore.ConsoleApp.Dtos;
 using MYTDotNetCore.ConsoleApp.Services;
 
 namespace MYTDotNetCore.ConsoleApp.DapperExamples
@@ -23,10 +23,12 @@ namespace MYTDotNetCore.ConsoleApp.DapperExamples
             Delete(13);
             //Read();
         }
+
+        private readonly IDbConnection _db = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
         public void Read()
         {
-            using IDbConnection db = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
-            List<BlogDto> lst = db.Query<BlogDto>("select * from Tbl_blog").ToList();
+
+            List<BlogDto> lst = _db.Query<BlogDto>("select * from Tbl_blog").ToList();
             foreach (BlogDto blog in lst)
             {
                 Console.WriteLine(blog.BlogId);
@@ -40,8 +42,8 @@ namespace MYTDotNetCore.ConsoleApp.DapperExamples
 
         public void Edit(int id)
         {
-            using IDbConnection db = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
-            var item = db.Query<BlogDto>("select * from Tbl_blog where BlogId = @BlogId", new BlogDto { BlogId = id }).FirstOrDefault();
+
+            var item = _db.Query<BlogDto>("select * from Tbl_blog where BlogId = @BlogId", new BlogDto { BlogId = id }).FirstOrDefault();
             if (item is null)
             {
                 Console.WriteLine("No Data Found");
@@ -71,8 +73,8 @@ namespace MYTDotNetCore.ConsoleApp.DapperExamples
            ,@BlogAuthor
            ,@BlogContent)";
 
-            using IDbConnection db = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
-            int result = db.Execute(query, item);
+
+            int result = _db.Execute(query, item);
 
             string message = result > 0 ? "Saving Successful" : "Saving Failed";
             Console.WriteLine(message);
@@ -92,8 +94,8 @@ namespace MYTDotNetCore.ConsoleApp.DapperExamples
       ,[BlogAuthor] = @BlogAuthor 
       ,[BlogContent] = @BlogContent
  WHERE BlogId = @BlogId";
-            using IDbConnection db = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
-            int result = db.Execute(query, item);
+
+            int result = _db.Execute(query, item);
             var message = result > 0 ? "Update Successful" : "Update Fail";
             Console.WriteLine(message);
         }
@@ -105,8 +107,8 @@ namespace MYTDotNetCore.ConsoleApp.DapperExamples
             };
             string query = @"Delete From [dbo].[Tbl_Blog] WHERE BlogId = @BlogId";
 
-            using IDbConnection db = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
-            int result = db.Execute(query, item);
+
+            int result = _db.Execute(query, item);
             string message = result > 0 ? "Delete Successful" : "Delete Fail";
             Console.WriteLine(message);
         }
