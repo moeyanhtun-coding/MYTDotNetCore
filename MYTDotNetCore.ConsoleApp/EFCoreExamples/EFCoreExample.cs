@@ -12,11 +12,11 @@ namespace MYTDotNetCore.ConsoleApp
 
         public void Run()
         {
-            //Read();
+            Read();
             //Edit(2);
             //Edit(14);
             //Create("this is new title","this is new Author", "this is new Content");
-            Update(14, "this is title update", "this is author", "this is Content");
+           //Update(14, "this is title update", "this is author", "this is Content");
         }
         private void Read()
         {

@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Dapper;
-//using MYTDotNetCore.ConsoleApp.Dtos;
 using MYTDotNetCore.ConsoleApp.Services;
 
 namespace MYTDotNetCore.ConsoleApp.DapperExamples
@@ -20,8 +14,8 @@ namespace MYTDotNetCore.ConsoleApp.DapperExamples
             //Edit(11);
             //Create("title", "author", "content");
             //Update(10, "Update Title", "Update Author", "Update Content");
-            Delete(13);
-            //Read();
+            //Delete(13);
+            Read();
         }
 
         private readonly IDbConnection _db = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);

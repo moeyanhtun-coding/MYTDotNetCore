@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.SqlClient;
 using MYTDotNetCore.ConsoleApp;
+using MYTDotNetCore.ConsoleApp.DapperExamples;
 
 Console.WriteLine("Hello, World!");
 
@@ -17,10 +18,10 @@ Console.WriteLine("Hello, World!");
 // Ado.Net Read
 // CRUD
 
-//DapperExample dapperExample = new DapperExample();
-//dapperExample.Run();     
-//
+DapperExample dapperExample = new DapperExample();
+dapperExample.Run();     
+
 
 EFCoreExample eFCoreExample = new EFCoreExample();
 eFCoreExample.Run();
-Console.ReadKey(); 
+Console.ReadKey();
