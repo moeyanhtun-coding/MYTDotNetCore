@@ -8,10 +8,14 @@
 
   <ItemGroup>
     <Content Remove="data.json" />
+    <Content Remove="PickAPileData.json" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="data.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="PickAPileData.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

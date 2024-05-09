@@ -15,7 +15,7 @@ namespace MYTDotNetCore.RestApiWithNLayer.Feature.LatHtaukBayDin
         private async Task<Models.LatHtaukBayDin> GetDataAsync()
         {
             string jsonStr = await System.IO.File.ReadAllTextAsync("data.json");
-            var model = JsonConvert.DeserializeObject<Models.LatHtaukBayDin>(jsonStr);
+            var model = JsonConvert.DeserializeObject<Models.LatHtaukBayDin>(jsonStr)!;
             return model;
         }
 
