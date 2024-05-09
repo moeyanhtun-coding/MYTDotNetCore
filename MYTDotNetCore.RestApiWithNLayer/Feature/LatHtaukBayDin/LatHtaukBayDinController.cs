@@ -12,10 +12,10 @@ namespace MYTDotNetCore.RestApiWithNLayer.Feature.LatHtaukBayDin
     [ApiController]
     public class LatHtaukBayDinController : ControllerBase
     {
-        private async Task<Models.LatHtaukBayDin> GetDataAsync()
+        private async Task<Models.LatHtaukBayDin.MainDto> GetDataAsync()
         {
             string jsonStr = await System.IO.File.ReadAllTextAsync("data.json");
-            var model = JsonConvert.DeserializeObject<Models.LatHtaukBayDin>(jsonStr)!;
+            var model = JsonConvert.DeserializeObject<Models.LatHtaukBayDin.MainDto>(jsonStr)!;
             return model;
         }
 
