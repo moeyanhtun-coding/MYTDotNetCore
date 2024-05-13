@@ -37,7 +37,6 @@ namespace MYTDotNetCore.RestApiWithNLayer.Feature.PickAPile
         {
             var model = await GetDataAsync();
            return Ok(model.Answers.FirstOrDefault(x => x.QuestionId == questionId && x.AnswerId == answerId));
-
         }
     }
 }
