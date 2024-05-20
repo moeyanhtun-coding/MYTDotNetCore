@@ -5,9 +5,9 @@ using System.Reflection.Metadata;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
-using MYTDotNetCore.WebRestApi.Models;
+using MYTDotNetCore.RestApi.Models;
 
-namespace MYTDotNetCore.WebRestApi.Controllers
+namespace MYTDotNetCore.RestApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MYTDotNetCore.WebRestApi.Models;
+using MYTDotNetCore.RestApi.Models;
 
-namespace MYTDotNetCore.WebRestApi.Db
+namespace MYTDotNetCore.RestApi.Db
 {
     public class AppDbContext : DbContext
     {

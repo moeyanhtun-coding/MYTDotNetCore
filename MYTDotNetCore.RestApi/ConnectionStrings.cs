@@ -5,13 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MYTDotNetCore.WebRestApi
+namespace MYTDotNetCore.RestApi
 {
     internal static class ConnectionStrings
     {
         public static SqlConnectionStringBuilder SqlConnectionStringBuilder = new SqlConnectionStringBuilder()
         {
-            DataSource = "AaronDGrant\\MSSQL",
+            DataSource = ".",
             InitialCatalog = "MYTDotNetCore",
             UserID = "sa",
             Password = "sa@123",

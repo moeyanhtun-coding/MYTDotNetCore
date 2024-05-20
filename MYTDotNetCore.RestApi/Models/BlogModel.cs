@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MYTDotNetCore.WebRestApi.Models
+namespace MYTDotNetCore.RestApi.Models
 {
     [Table("Tbl_Blog")]
     public class BlogModel

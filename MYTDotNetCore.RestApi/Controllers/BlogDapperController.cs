@@ -1,13 +1,13 @@
 ﻿using System.Data.SqlClient;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using MYTDotNetCore.WebRestApi.Models;
-using MYTDotNetCore.WebRestApi;
+using MYTDotNetCore.RestApi.Controllers;
+using MYTDotNetCore.RestApi.Models;
 using System.Data;
 using Dapper;
 using Microsoft.IdentityModel.Tokens;
 
-namespace MYTDotNetCore.WebRestApi.Controllers
+namespace MYTDotNetCore.RestApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
