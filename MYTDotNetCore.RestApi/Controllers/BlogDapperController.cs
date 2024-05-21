@@ -1,11 +1,11 @@
-﻿using System.Data.SqlClient;
+﻿using System.Data;
+using System.Data.SqlClient;
+using Dapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using MYTDotNetCore.RestApi.Controllers;
 using MYTDotNetCore.RestApi.Models;
-using System.Data;
-using Dapper;
-using Microsoft.IdentityModel.Tokens;
 
 namespace MYTDotNetCore.RestApi.Controllers
 {
@@ -13,7 +13,9 @@ namespace MYTDotNetCore.RestApi.Controllers
     [ApiController]
     public class BlogDapperController : ControllerBase
     {
-        private readonly IDbConnection _db = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
+        private readonly IDbConnection _db = new SqlConnection(
+            ConnectionStrings.SqlConnectionStringBuilder.ConnectionString
+        );
 
         [HttpGet]
         public IActionResult GetBlogs()
@@ -26,7 +28,7 @@ namespace MYTDotNetCore.RestApi.Controllers
         [HttpGet("{id}")]
         public IActionResult GetBlog(int id)
         {
-            var item = FindById (id);
+            var item = FindById(id);
             if (item is null)
             {
                 return NotFound("item not found");
@@ -37,7 +39,8 @@ namespace MYTDotNetCore.RestApi.Controllers
         [HttpPost]
         public IActionResult CreateBlog(BlogModel blog)
         {
-            string query = @"INSERT INTO [dbo].[Tbl_Blog]
+            string query =
+                @"INSERT INTO [dbo].[Tbl_Blog]
            ([BlogTitle]
            ,[BlogAuthor]
            ,[BlogContent])
@@ -59,7 +62,8 @@ namespace MYTDotNetCore.RestApi.Controllers
                 return NotFound("Item Not Found");
             }
 
-            string query = @"UPDATE [dbo].[Tbl_Blog]
+            string query =
+                @"UPDATE [dbo].[Tbl_Blog]
    SET [BlogTitle] = @BlogTitle
       ,[BlogAuthor] = @BlogAuthor 
       ,[BlogContent] = @BlogContent
@@ -74,12 +78,12 @@ namespace MYTDotNetCore.RestApi.Controllers
         public IActionResult PatchBlog(int id, BlogModel blog)
         {
             var item = FindById(id);
-            if (item is null) 
+            if (item is null)
             {
                 return NotFound("Data not found");
             }
             string condition = string.Empty;
-            if (!string.IsNullOrEmpty(blog.BlogTitle)) 
+            if (!string.IsNullOrEmpty(blog.BlogTitle))
             {
                 condition += "[BlogTitle] = @BlogTitle, ";
             }
@@ -91,8 +95,9 @@ namespace MYTDotNetCore.RestApi.Controllers
             {
                 condition += "[BlogContent] = @BlogContent, ";
             }
-            condition = condition.Substring(0, condition.Length - 2); 
-            string query = $@"UPDATE [dbo].[Tbl_Blog]
+            condition = condition.Substring(0, condition.Length - 2);
+            string query =
+                $@"UPDATE [dbo].[Tbl_Blog]
    SET {condition}
  WHERE BlogId = @BlogId";
             blog.BlogId = id;
@@ -110,11 +115,11 @@ namespace MYTDotNetCore.RestApi.Controllers
                 return NotFound("Item not found");
             }
             string query = @"Delete From [dbo].[Tbl_Blog] WHERE BlogId = @BlogId";
-            int result = _db.Execute(query,item);
+            int result = _db.Execute(query, item);
             string message = result > 0 ? "Delete Success" : "Delete Fail";
             return Ok(message);
-
         }
+
         private BlogModel FindById(int id)
         {
             string query = "select * from Tbl_Blog where BlogId = @BlogId";

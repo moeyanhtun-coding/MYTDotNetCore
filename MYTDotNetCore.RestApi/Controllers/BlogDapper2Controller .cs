@@ -1,11 +1,9 @@
-﻿using System.Data.SqlClient;
+﻿using System.Data;
+using System.Data.SqlClient;
+using Dapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using MYTDotNetCore.RestApi.Controllers;
 using MYTDotNetCore.RestApi.Models;
-using System.Data;
-using Dapper;
-using Microsoft.IdentityModel.Tokens;
 using MYTDotNetCore.Shared;
 
 namespace MYTDotNetCore.RestApi.Controllers
@@ -14,7 +12,9 @@ namespace MYTDotNetCore.RestApi.Controllers
     [ApiController]
     public class BlogDapper2Controller : ControllerBase
     {
-        private readonly DapperService _dapperService = new DapperService(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
+        private readonly DapperService _dapperService = new DapperService(
+            ConnectionStrings.SqlConnectionStringBuilder.ConnectionString
+        );
 
         [HttpGet]
         public IActionResult GetBlogs()
@@ -38,7 +38,8 @@ namespace MYTDotNetCore.RestApi.Controllers
         [HttpPost]
         public IActionResult CreateBlog(BlogModel blog)
         {
-            string query = @"INSERT INTO [dbo].[Tbl_Blog]
+            string query =
+                @"INSERT INTO [dbo].[Tbl_Blog]
            ([BlogTitle]
            ,[BlogAuthor]
            ,[BlogContent])
@@ -60,7 +61,8 @@ namespace MYTDotNetCore.RestApi.Controllers
                 return NotFound("Item Not Found");
             }
 
-            string query = @"UPDATE [dbo].[Tbl_Blog]
+            string query =
+                @"UPDATE [dbo].[Tbl_Blog]
    SET [BlogTitle] = @BlogTitle
       ,[BlogAuthor] = @BlogAuthor 
       ,[BlogContent] = @BlogContent
@@ -93,7 +95,8 @@ namespace MYTDotNetCore.RestApi.Controllers
                 condition += "[BlogContent] = @BlogContent, ";
             }
             condition = condition.Substring(0, condition.Length - 2);
-            string query = $@"UPDATE [dbo].[Tbl_Blog]
+            string query =
+                $@"UPDATE [dbo].[Tbl_Blog]
    SET {condition}
  WHERE BlogId = @BlogId";
             blog.BlogId = id;
@@ -119,7 +122,10 @@ namespace MYTDotNetCore.RestApi.Controllers
         private BlogModel FindById(int id)
         {
             string query = "select * from Tbl_Blog where BlogId = @BlogId";
-            var item = _dapperService.QueryFirstOrDefault<BlogModel>(query, new BlogModel { BlogId = id });
+            var item = _dapperService.QueryFirstOrDefault<BlogModel>(
+                query,
+                new BlogModel { BlogId = id }
+            );
             return item;
         }
     }
