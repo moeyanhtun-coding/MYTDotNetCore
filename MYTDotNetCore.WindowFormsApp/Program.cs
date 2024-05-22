@@ -1,4 +1,4 @@
-namespace MYTDotNetCore.WindowFormsApp
+ namespace MYTDotNetCore.WindowFormsApp
 {
     internal static class Program
     {
