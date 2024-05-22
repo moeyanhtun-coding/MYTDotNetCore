@@ -21,6 +21,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MYTDotNetCore.RestApiWithNL
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MYTDotNetCore.Shared", "..\..\C#\MYTDotNetCore\MYTDotNetCore.Shared\MYTDotNetCore.Shared.csproj", "{B51A9720-4208-431B-89CE-2DFB5C3F500E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MYTDotNetCore.WindowFormsApp", "MYTDotNetCore.WindowFormsApp\MYTDotNetCore.WindowFormsApp.csproj", "{9B012523-CF70-494C-83AC-B8468BF7C79F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{B51A9720-4208-431B-89CE-2DFB5C3F500E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B51A9720-4208-431B-89CE-2DFB5C3F500E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B51A9720-4208-431B-89CE-2DFB5C3F500E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B012523-CF70-494C-83AC-B8468BF7C79F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B012523-CF70-494C-83AC-B8468BF7C79F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B012523-CF70-494C-83AC-B8468BF7C79F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B012523-CF70-494C-83AC-B8468BF7C79F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
