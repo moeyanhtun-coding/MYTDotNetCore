@@ -1,8 +1,9 @@
 ﻿using Dapper;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 
-namespace MYTDotNetCoreShare
+namespace MYTDotNetCore.Shared2
 {
     public class DapperService
     {
@@ -16,15 +17,15 @@ namespace MYTDotNetCoreShare
         public List<T> Query<T>(string query, object? param = null)
         {
             using IDbConnection db = new SqlConnection(_connectionString);
-            var lst = db.Query<T>(query,param).ToList();
+            List<T> lst = db.Query<T>(query, param).ToList<T>();
             return lst;
         }
 
-        public T QueryFirstOrDefault<T> (string query, object? param = null)
+        public T QueryFirstOrDefault<T>(string query, object? param = null)
         {
             using IDbConnection db = new SqlConnection(_connectionString);
-            var lst = db.Query<T>(query,param).FirstOrDefault();
-            return lst!;
+            var item = db.QueryFirstOrDefault<T>(query, param)!;
+            return item;
         }
 
         public int Execute(string query, object? param = null)

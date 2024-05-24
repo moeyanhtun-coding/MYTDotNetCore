@@ -23,7 +23,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MYTDotNetCore.ConsoleAppRes
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MYTDotNetCore.RestApiWithNLayer", "MYTDotNetCore.RestApiWithNLayer\MYTDotNetCore.RestApiWithNLayer.csproj", "{1B6AF83A-CAA2-484E-9D05-A7DD998BE334}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MYTDotNetCore.PizzaApi", "MYTDotNetCore.PizzaApi\MYTDotNetCore.PizzaApi.csproj", "{EEC05556-1CE8-4E8C-9D32-CD8448AE8079}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MYTDotNetCore.PizzaApi", "MYTDotNetCore.PizzaApi\MYTDotNetCore.PizzaApi.csproj", "{EEC05556-1CE8-4E8C-9D32-CD8448AE8079}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MYTDotNetCore.Shared2", "MYTDotNetCore.Shared2\MYTDotNetCore.Shared2.csproj", "{451A72D0-A1AB-472A-A85A-9BCE65B295FA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +65,10 @@ Global
 		{EEC05556-1CE8-4E8C-9D32-CD8448AE8079}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EEC05556-1CE8-4E8C-9D32-CD8448AE8079}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EEC05556-1CE8-4E8C-9D32-CD8448AE8079}.Release|Any CPU.Build.0 = Release|Any CPU
+		{451A72D0-A1AB-472A-A85A-9BCE65B295FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{451A72D0-A1AB-472A-A85A-9BCE65B295FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{451A72D0-A1AB-472A-A85A-9BCE65B295FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{451A72D0-A1AB-472A-A85A-9BCE65B295FA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

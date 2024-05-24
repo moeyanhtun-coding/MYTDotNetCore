@@ -16,4 +16,9 @@
     <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
   </ItemGroup>
 
+
+  <ItemGroup>
+    <ProjectReference Include="..\MYTDotNetCore.Shared2\MYTDotNetCore.Shared2.csproj" />
+  </ItemGroup>
+
 </Project>

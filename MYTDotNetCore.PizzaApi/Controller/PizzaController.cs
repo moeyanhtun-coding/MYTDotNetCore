@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MYTDotNetCore.PizzaApi.Db;
 using MYTDotNetCore.PizzaApi.Models;
+using MYTDotNetCore.Shared2;
 
 namespace MYTDotNetCore.PizzaApi.Controller;
 
@@ -12,10 +13,14 @@ namespace MYTDotNetCore.PizzaApi.Controller;
 public class PizzaController : ControllerBase
 {
     private readonly AddDbContext _addDbContext;
+    private readonly DapperService _dapperService;
 
     public PizzaController()
     {
         _addDbContext = new AddDbContext();
+        _dapperService = new DapperService(
+            ConnectionStrings.SqlConnectionStringBuilder.ConnectionString
+        );
     }
 
     [HttpGet("Pizza")]
@@ -35,14 +40,29 @@ public class PizzaController : ControllerBase
     [HttpGet("PizzaOrderDetail/{invoice}")]
     public async Task<IActionResult> GetPizzaOrderDetailAsync(string invoice)
     {
-        var order = await _addDbContext.PizzaOrder.FirstOrDefaultAsync(x=> x.PizzaOrderInvoiceNo == invoice);
-        if (order is null) return NotFound("Invoice Not Found");
-        var orderDetail = await _addDbContext.PizzaOrderDetail.Where(x=> x.PizzaOrderInvoiceNo == order.PizzaOrderInvoiceNo).ToListAsync();
-        var model = new InvoiceDetail()
-        {
-            Order = order,
-            OrderDetail = orderDetail
-        };
+        //var order = await _addDbContext.PizzaOrder.FirstOrDefaultAsync(x=> x.PizzaOrderInvoiceNo == invoice);
+
+        //var orderDetail = await _addDbContext.PizzaOrderDetail.Where(x=> x.PizzaOrderInvoiceNo == order.PizzaOrderInvoiceNo).ToListAsync();
+        //var model = new InvoiceDetail()
+        //{
+        //    Order = order,
+        //    OrderDetail = orderDetail
+        //};
+
+        var order = _dapperService.QueryFirstOrDefault<PizzaOrders>(
+            Queries.PizzaQueries.pizzaOrderQuery,
+            new { PizzaOrderInvoiceNo = invoice }
+        );
+
+        if (order is null)
+            return NotFound("Invoice Not Found");
+
+        var orderDetail = _dapperService.Query<PizzaOrderDetails>(
+            Queries.PizzaQueries.pizzaOrderDetailQuery,
+            new { PizzaOrderInvoiceNo = order.PizzaOrderInvoiceNo }
+        );
+
+        var model = new InvoiceDetail() { Order = order, OrderDetail = orderDetail };
         return Ok(model);
     }
 
@@ -85,10 +105,10 @@ public class PizzaController : ControllerBase
 
         OrderResponse orderResponse = new OrderResponse()
         {
-           InvoiceNo = invoice,
-           Message = "Thank You for your order! Enjoy your pizza",
-           TotalAmount = total
+            InvoiceNo = invoice,
+            Message = "Thank You for your order! Enjoy your pizza",
+            TotalAmount = total
         };
         return Ok(orderResponse);
-     }
+    }
 }

@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Client;
 using MYTDotNetCore.PizzaApi.Models;
 
 namespace MYTDotNetCore.PizzaApi.Db;
@@ -29,8 +31,46 @@ public class OrderResponse
     public decimal TotalAmount { get; set; }
 }
 
+public class PizzaOrders
+{
+    public int PizzaOrderId { get; set; }
+    public string PizzaOrderInvoiceNo { get; set; }
+    public decimal TotalAmount { get; set; }
+
+    [NotMapped]
+    public string TotalAmountStr
+    {
+        get { return "$ " + TotalAmount; }
+    }
+
+    public int PizzaId { get; set; }
+    public string Pizza { get; set; }
+    public decimal Price { get; set; }
+
+    [NotMapped]
+    public string PriceStr
+    {
+        get { return "$ " + Price; }
+    }
+}
+
+public class PizzaOrderDetails
+{
+    public int PizzaOrderDetailId { get; set; }
+    public string PizzaOrderInvoiceNo { get; set; }
+    public int PizzaExtraId { get; set; }
+    public string PizzaExtraName { get; set; }
+    public decimal Price { get; set; }
+
+    [NotMapped]
+    public string PriceStr
+    {
+        get { return "$ " + Price; }
+    }
+}
+
 public class InvoiceDetail
 {
-    public PizzaOrderModel Order { get; set; }
-    public List<PizzaOrderDetailModel> OrderDetail { get; set; }
+    public PizzaOrders Order { get; set; }
+    public List<PizzaOrderDetails> OrderDetail { get; set; }
 }

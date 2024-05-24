@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using MYTDotNetCore.RestApi.Models;
-using MYTDotNetCore.Shared;
+using MYTDotNetCore.Shared2;
 
 namespace MYTDotNetCore.RestApi.Controllers;
 
@@ -121,7 +121,7 @@ public class BlogAdoDotNet2Controller : ControllerBase
 
         lst.Add(new AdoDotNetParameter("@BlogId", id));
 
-        int result = _adoDotNetService.Execute(query,lst.ToArray());
+        int result = _adoDotNetService.Execute(query, lst.ToArray());
         string message = result > 0 ? "Update Success" : "Update Fail";
         return Ok(message);
     }

@@ -4,7 +4,7 @@ using Dapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MYTDotNetCore.RestApi.Models;
-using MYTDotNetCore.Shared;
+using MYTDotNetCore.Shared2;
 
 namespace MYTDotNetCore.RestApi.Controllers
 {
