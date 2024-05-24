@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MYTDotNetCore.PizzaApi.Models;
+
 namespace MYTDotNetCore.PizzaApi.Db;
 
 public class AddDbContext : DbContext
@@ -8,11 +9,13 @@ public class AddDbContext : DbContext
     {
         optionsBuilder.UseSqlServer(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
     }
+
     public DbSet<PizzaModel> Pizzas { get; set; }
     public DbSet<PizzaExtraModel> PizzaExtra { get; set; }
     public DbSet<PizzaOrderModel> PizzaOrder { get; set; }
     public DbSet<PizzaOrderDetailModel> PizzaOrderDetail { get; set; }
 }
+
 public class OrderRequest
 {
     public int PizzaId { get; set; }
@@ -24,4 +27,10 @@ public class OrderResponse
     public string Message { get; set; }
     public string InvoiceNo { get; set; }
     public decimal TotalAmount { get; set; }
+}
+
+public class InvoiceDetail
+{
+    public PizzaOrderModel Order { get; set; }
+    public List<PizzaOrderDetailModel> OrderDetail { get; set; }
 }
