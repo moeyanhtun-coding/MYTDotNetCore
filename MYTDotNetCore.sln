@@ -17,13 +17,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MYTDotNetCore.ConsoleAppHtt
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MYTDotNetCore.RestApi", "MYTDotNetCore.RestApi\MYTDotNetCore.RestApi.csproj", "{72F01102-A44A-4D42-9135-68B301F0AE3B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MYTDotNetCore.RestApiWithNLayer", "..\..\C#\MYTDotNetCore\MYTDotNetCore.RestApiWithNLayer\MYTDotNetCore.RestApiWithNLayer.csproj", "{05990AB2-BEEF-44B1-ACA7-6028FD33C17C}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MYTDotNetCore.Shared", "..\..\C#\MYTDotNetCore\MYTDotNetCore.Shared\MYTDotNetCore.Shared.csproj", "{B51A9720-4208-431B-89CE-2DFB5C3F500E}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MYTDotNetCore.WindowFormsApp", "MYTDotNetCore.WindowFormsApp\MYTDotNetCore.WindowFormsApp.csproj", "{9B012523-CF70-494C-83AC-B8468BF7C79F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MYTDotNetCore.ConsoleAppRestClientExamples", "MYTDotNetCore.ConsoleAppRestClient\MYTDotNetCore.ConsoleAppRestClientExamples.csproj", "{3D5D2AFF-C7CF-46C9-ADFC-2A005727AA10}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MYTDotNetCore.ConsoleAppRestClientExamples", "MYTDotNetCore.ConsoleAppRestClient\MYTDotNetCore.ConsoleAppRestClientExamples.csproj", "{3D5D2AFF-C7CF-46C9-ADFC-2A005727AA10}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MYTDotNetCore.RestApiWithNLayer", "MYTDotNetCore.RestApiWithNLayer\MYTDotNetCore.RestApiWithNLayer.csproj", "{1B6AF83A-CAA2-484E-9D05-A7DD998BE334}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,14 +45,6 @@ Global
 		{72F01102-A44A-4D42-9135-68B301F0AE3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{72F01102-A44A-4D42-9135-68B301F0AE3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{72F01102-A44A-4D42-9135-68B301F0AE3B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{05990AB2-BEEF-44B1-ACA7-6028FD33C17C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{05990AB2-BEEF-44B1-ACA7-6028FD33C17C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{05990AB2-BEEF-44B1-ACA7-6028FD33C17C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{05990AB2-BEEF-44B1-ACA7-6028FD33C17C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B51A9720-4208-431B-89CE-2DFB5C3F500E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B51A9720-4208-431B-89CE-2DFB5C3F500E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B51A9720-4208-431B-89CE-2DFB5C3F500E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B51A9720-4208-431B-89CE-2DFB5C3F500E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9B012523-CF70-494C-83AC-B8468BF7C79F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9B012523-CF70-494C-83AC-B8468BF7C79F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9B012523-CF70-494C-83AC-B8468BF7C79F}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -63,6 +53,10 @@ Global
 		{3D5D2AFF-C7CF-46C9-ADFC-2A005727AA10}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D5D2AFF-C7CF-46C9-ADFC-2A005727AA10}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3D5D2AFF-C7CF-46C9-ADFC-2A005727AA10}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B6AF83A-CAA2-484E-9D05-A7DD998BE334}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B6AF83A-CAA2-484E-9D05-A7DD998BE334}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B6AF83A-CAA2-484E-9D05-A7DD998BE334}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B6AF83A-CAA2-484E-9D05-A7DD998BE334}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
