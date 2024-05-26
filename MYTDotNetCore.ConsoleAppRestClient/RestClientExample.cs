@@ -9,7 +9,7 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace MYTDotNetCore.ConsoleAppHttpClientExample;
 
-internal class RestClient
+internal class RestClientExample
 {
     private readonly RestSharp.RestClient _client = new RestSharp.RestClient(
         new Uri("https://localhost:7088/")

@@ -3,7 +3,7 @@ using MYTDotNetCore.ConsoleAppHttpClientExample;
 
 Console.WriteLine("Hello, World!");
 
-RestClient restClient = new RestClient();
+RestClientExample restClient = new RestClientExample();
 await restClient.RunAsync();
 
 Console.ReadLine();
