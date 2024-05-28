@@ -72,7 +72,7 @@ public class PizzaController : ControllerBase
         var itemPizza = await _addDbContext.Pizzas.FirstOrDefaultAsync(x =>
             x.Id == orderRequest.PizzaId
         );
-        var total = itemPizza.Price;
+        var total = itemPizza!.Price;
         if (orderRequest.PizzaExtraId.Length > 0)
         {
             var lstExtra = await _addDbContext

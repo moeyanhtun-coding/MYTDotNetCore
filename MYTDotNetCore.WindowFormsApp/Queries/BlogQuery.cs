@@ -9,7 +9,8 @@ namespace MYTDotNetCore.WindowFormsApp.Queries
 {
     internal class BlogQuery
     {
-        public static string BlogCreate {get;} = @"INSERT INTO [dbo].[Tbl_Blog]
+        public static string BlogCreate { get; } =
+            @"INSERT INTO [dbo].[Tbl_Blog]
            ([BlogTitle]
            ,[BlogAuthor]
            ,[BlogContent])
@@ -17,6 +18,12 @@ namespace MYTDotNetCore.WindowFormsApp.Queries
            (@BlogTitle
            ,@BlogAuthor
            ,@BlogContent)";
+
+        public static string BlogLists { get; } =
+            @"SELECT TOP (1000) [BlogId]
+              ,[BlogTitle]
+              ,[BlogAuthor]
+              ,[BlogContent]
+          FROM [MYTDotNetCore].[dbo].[Tbl_Blog]";
     }
 }
-    

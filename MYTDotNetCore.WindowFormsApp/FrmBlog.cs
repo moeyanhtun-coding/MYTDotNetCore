@@ -1,14 +1,14 @@
+using System.Data.SqlClient;
+using MYTDotNetCore.Shared2;
+using MYTDotNetCore.WindowFormsApp.Models;
 namespace MYTDotNetCore.WindowFormsApp;
 
-using System.Data.SqlClient;
-using MYTDotNetCore.Shared;
-using MYTDotNetCore.WindowFormsApp.Models;
 
-public partial class txt : Form
+public partial class FrmBlog : Form
 {
     private readonly DapperService _dapperService;
 
-    public txt()
+    public FrmBlog()
     {
         InitializeComponent();
         _dapperService = new DapperService(
@@ -34,7 +34,7 @@ public partial class txt : Form
             string message = result > 0 ? "Create Success" : "Create Fail";
             var messageBoxIcon = result > 0 ? MessageBoxIcon.Information : MessageBoxIcon.Error;
             MessageBox.Show(message, "Blog", MessageBoxButtons.OK, messageBoxIcon);
-            if(result > 0) 
+            if (result > 0)
                 ClearControl();
         }
         catch (Exception ex)
@@ -43,7 +43,8 @@ public partial class txt : Form
         }
     }
 
-    private void txtContent_TextChanged(object sender, EventArgs e) {
+    private void txtContent_TextChanged(object sender, EventArgs e)
+    {
 
     }
 
@@ -54,5 +55,10 @@ public partial class txt : Form
         txtContent.Clear();
 
         txtTitle.Focus();
+    }
+
+    private void txt_Load(object sender, EventArgs e)
+    {
+
     }
 }

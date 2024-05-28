@@ -1,6 +1,6 @@
 ﻿namespace MYTDotNetCore.WindowFormsApp
 {
-    partial class txt
+    partial class FrmBlog
     {
         /// <summary>
         ///  Required designer variable.
@@ -50,7 +50,6 @@
             btnCancel.TabIndex = 0;
             btnCancel.Text = "Cancel";
             btnCancel.UseVisualStyleBackColor = false;
-            btnCancel.Click += btnCancel_Click;
             // 
             // txtTitle
             // 
@@ -117,7 +116,7 @@
             btnSave.UseVisualStyleBackColor = false;
             btnSave.Click += btnSave_Click;
             // 
-            // txt
+            // FrmBlog
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -130,9 +129,10 @@
             Controls.Add(txtAuthor);
             Controls.Add(txtTitle);
             Controls.Add(btnCancel);
-            Name = "txt";
+            Name = "FrmBlog";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Blog";
+            Text = "FrmBlog";
+            Load += txt_Load;
             ResumeLayout(false);
             PerformLayout();
         }

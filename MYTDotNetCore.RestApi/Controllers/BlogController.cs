@@ -37,7 +37,6 @@ namespace MYTDotNetCore.RestApi.Controllers
         }
 
         [HttpPost]
-
         public IActionResult Create(BlogModel blog) {
             _context.Blogs.Add(blog);
             int result = _context.SaveChanges();
