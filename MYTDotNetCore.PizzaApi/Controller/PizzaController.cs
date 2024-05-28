@@ -12,12 +12,12 @@ namespace MYTDotNetCore.PizzaApi.Controller;
 [ApiController]
 public class PizzaController : ControllerBase
 {
-    private readonly AddDbContext _addDbContext;
+    private readonly AppDbContext _appDbContext;
     private readonly DapperService _dapperService;
 
     public PizzaController()
     {
-        _addDbContext = new AddDbContext();
+        _appDbContext = new AppDbContext();
         _dapperService = new DapperService(
             ConnectionStrings.SqlConnectionStringBuilder.ConnectionString
         );
@@ -26,14 +26,14 @@ public class PizzaController : ControllerBase
     [HttpGet("Pizza")]
     public async Task<IActionResult> GetPizzaAsync()
     {
-        var lst = await _addDbContext.Pizzas.ToListAsync();
+        var lst = await _appDbContext.Pizzas.ToListAsync();
         return Ok(lst);
     }
 
     [HttpGet("PizzaExtra")]
     public async Task<IActionResult> GetPizzaExtraAsync()
     {
-        var lst = await _addDbContext.PizzaExtra.ToListAsync();
+        var lst = await _appDbContext.PizzaExtra.ToListAsync();
         return Ok(lst);
     }
 
@@ -69,13 +69,13 @@ public class PizzaController : ControllerBase
     [HttpPost("PizzaOrder")]
     public async Task<IActionResult> GetPizzaOrderAsync(OrderRequest orderRequest)
     {
-        var itemPizza = await _addDbContext.Pizzas.FirstOrDefaultAsync(x =>
+        var itemPizza = await _appDbContext.Pizzas.FirstOrDefaultAsync(x =>
             x.Id == orderRequest.PizzaId
         );
         var total = itemPizza!.Price;
         if (orderRequest.PizzaExtraId.Length > 0)
         {
-            var lstExtra = await _addDbContext
+            var lstExtra = await _appDbContext
                 .PizzaExtra.Where(x => orderRequest.PizzaExtraId.Contains(x.Id))
                 .ToListAsync();
 
@@ -99,9 +99,9 @@ public class PizzaController : ControllerBase
             })
             .ToList();
 
-        await _addDbContext.PizzaOrder.AddAsync(pizzaOrderModel);
-        await _addDbContext.PizzaOrderDetail.AddRangeAsync(pizzaOrderDetails);
-        await _addDbContext.SaveChangesAsync();
+        await _appDbContext.PizzaOrder.AddAsync(pizzaOrderModel);
+        await _appDbContext.PizzaOrderDetail.AddRangeAsync(pizzaOrderDetails);
+        await _appDbContext.SaveChangesAsync();
 
         OrderResponse orderResponse = new OrderResponse()
         {

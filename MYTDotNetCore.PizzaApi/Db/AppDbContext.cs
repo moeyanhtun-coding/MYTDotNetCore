@@ -5,7 +5,7 @@ using MYTDotNetCore.PizzaApi.Models;
 
 namespace MYTDotNetCore.PizzaApi.Db;
 
-public class AddDbContext : DbContext
+public class AppDbContext : DbContext
 {
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
