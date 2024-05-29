@@ -34,6 +34,8 @@ namespace MYTDotNetCore.WindowFormsApp
             if (e.ColumnIndex < 0) return;
             int blogId = Convert.ToInt32(dgvBlog.Rows[e.RowIndex].Cells["colId"].Value);
 
+            #region If case
+
             if (e.ColumnIndex == (int)EnumFormControlType.Edit)
             {
                 FrmBlog frm = new FrmBlog(blogId);
@@ -47,8 +49,40 @@ namespace MYTDotNetCore.WindowFormsApp
                 MessageBox.Show(DeleteBlog(blogId));
                 BlogLists();
             }
+
+            #endregion
+
+            #region switch Case
+
+            int index = e.ColumnIndex;
+            EnumFormControlType enumFormControlType = (EnumFormControlType)index;
+
+            switch (enumFormControlType)
+            {
+                case EnumFormControlType.Edit:
+                    FrmBlog frm = new FrmBlog();
+                    frm.ShowDialog(blogIds);
+                    brake;
+                case EnumFormControlType.Delete:
+                    var dialogResult = MessageBox.Show("Are you sure want to delete?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult != DialogResult.Yes) return;
+                    DeletBlog(blogId);
+                    brake;
+                default:
+                    var message = MessageBox.Show("Something Was Wrong !", "", MessageBoxButtons.OKCancel, MessageBoxIcon.Warnings);
+                    return message;
+                    break;
+
+            }
+            #endregion
         }
 
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> 39e2d7e ([ Complete ] Switch Case with EnumFromControlType)
         private void BlogLists()
         {
             List<BlogModel> lst = _dapperService.Query<BlogModel>(Queries.BlogQuery.BlogLists);
