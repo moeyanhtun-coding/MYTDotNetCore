@@ -43,11 +43,6 @@ public partial class FrmBlog : Form
         }
     }
 
-    private void txtContent_TextChanged(object sender, EventArgs e)
-    {
-
-    }
-
     private void ClearControl()
     {
         txtTitle.Clear();
@@ -57,8 +52,4 @@ public partial class FrmBlog : Form
         txtTitle.Focus();
     }
 
-    private void txt_Load(object sender, EventArgs e)
-    {
-
-    }
 }

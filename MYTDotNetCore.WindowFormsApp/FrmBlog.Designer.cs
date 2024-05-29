@@ -72,7 +72,6 @@
             txtContent.Name = "txtContent";
             txtContent.Size = new Size(493, 139);
             txtContent.TabIndex = 3;
-            txtContent.TextChanged += txtContent_TextChanged;
             // 
             // label1
             // 
@@ -132,7 +131,6 @@
             Name = "FrmBlog";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "FrmBlog";
-            Load += txt_Load;
             ResumeLayout(false);
             PerformLayout();
         }

@@ -30,8 +30,8 @@
         {
             blogToolStripMenuItem = new ToolStripMenuItem();
             newBlogToolStripMenuItem = new ToolStripMenuItem();
-            menuStrip1 = new MenuStrip();
             blogListToolStripMenuItem = new ToolStripMenuItem();
+            menuStrip1 = new MenuStrip();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -45,9 +45,16 @@
             // newBlogToolStripMenuItem
             // 
             newBlogToolStripMenuItem.Name = "newBlogToolStripMenuItem";
-            newBlogToolStripMenuItem.Size = new Size(270, 34);
+            newBlogToolStripMenuItem.Size = new Size(190, 34);
             newBlogToolStripMenuItem.Text = "New Blog";
             newBlogToolStripMenuItem.Click += newBlogToolStripMenuItem_Click;
+            // 
+            // blogListToolStripMenuItem
+            // 
+            blogListToolStripMenuItem.Name = "blogListToolStripMenuItem";
+            blogListToolStripMenuItem.Size = new Size(190, 34);
+            blogListToolStripMenuItem.Text = "Blog List";
+            blogListToolStripMenuItem.Click += blogListToolStripMenuItem_Click;
             // 
             // menuStrip1
             // 
@@ -59,13 +66,6 @@
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
-            // blogListToolStripMenuItem
-            // 
-            blogListToolStripMenuItem.Name = "blogListToolStripMenuItem";
-            blogListToolStripMenuItem.Size = new Size(270, 34);
-            blogListToolStripMenuItem.Text = "Blog List";
-            blogListToolStripMenuItem.Click += blogListToolStripMenuItem_Click;
-            // 
             // FrmMainMenu
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -74,6 +74,7 @@
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
             Name = "FrmMainMenu";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "FrmMainMenu";
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();

@@ -51,6 +51,7 @@
             dgvBlog.RowTemplate.Height = 33;
             dgvBlog.Size = new Size(800, 450);
             dgvBlog.TabIndex = 0;
+            dgvBlog.CellContentClick += dgvBlog_CellContentClick;
             // 
             // colId
             // 
@@ -58,7 +59,6 @@
             colId.HeaderText = "ID";
             colId.MinimumWidth = 8;
             colId.Name = "colId";
-            colId.Visible = false;
             // 
             // colTitle
             // 
@@ -104,6 +104,7 @@
             ClientSize = new Size(800, 450);
             Controls.Add(dgvBlog);
             Name = "FrmBlogList";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "FrmBlogList";
             Load += FrmBlogList_Load;
             ((System.ComponentModel.ISupportInitialize)dgvBlog).EndInit();

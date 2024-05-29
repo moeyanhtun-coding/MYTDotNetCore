@@ -25,5 +25,7 @@ namespace MYTDotNetCore.WindowFormsApp.Queries
               ,[BlogAuthor]
               ,[BlogContent]
           FROM [MYTDotNetCore].[dbo].[Tbl_Blog]";
+        public static string BlogDelete { get; } =
+            @"DELETE FROM [dbo].[Tbl_Blog] WHERE BlogId = @BlogId";
     }
 }
