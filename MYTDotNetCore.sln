@@ -27,7 +27,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MYTDotNetCore.PizzaApi", "M
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MYTDotNetCore.Shared2", "MYTDotNetCore.Shared2\MYTDotNetCore.Shared2.csproj", "{451A72D0-A1AB-472A-A85A-9BCE65B295FA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MYTDotNetCore.ConsoleAppRefitExamples", "MYTDotNetCore.ConsoleAppRefitExamples\MYTDotNetCore.ConsoleAppRefitExamples.csproj", "{40B98B34-DC22-40EF-8079-BCA4AD588E62}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MYTDotNetCore.ConsoleAppRefitExamples", "MYTDotNetCore.ConsoleAppRefitExamples\MYTDotNetCore.ConsoleAppRefitExamples.csproj", "{40B98B34-DC22-40EF-8079-BCA4AD588E62}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MYTDotNetCore.NLayer.UI", "MYTDotNetCore.NLayer.UI\MYTDotNetCore.NLayer.UI.csproj", "{72FE44F8-9154-447E-A282-63AE7D30C9CC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MYTDotNetCore.NLayer.BusinessLogic", "MYTDotNetCore.NLayer.BusinessLogic\MYTDotNetCore.NLayer.BusinessLogic.csproj", "{C427DDE8-59EE-4372-8B3A-C18114997AF8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MYTDotNetCore.NLayer.DataAccess", "MYTDotNetCore.NLayer.DataAccess\MYTDotNetCore.NLayer.DataAccess.csproj", "{AE6425D6-E616-47F2-8A52-D52414FE910C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +81,18 @@ Global
 		{40B98B34-DC22-40EF-8079-BCA4AD588E62}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{40B98B34-DC22-40EF-8079-BCA4AD588E62}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{40B98B34-DC22-40EF-8079-BCA4AD588E62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72FE44F8-9154-447E-A282-63AE7D30C9CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72FE44F8-9154-447E-A282-63AE7D30C9CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72FE44F8-9154-447E-A282-63AE7D30C9CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72FE44F8-9154-447E-A282-63AE7D30C9CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C427DDE8-59EE-4372-8B3A-C18114997AF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C427DDE8-59EE-4372-8B3A-C18114997AF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C427DDE8-59EE-4372-8B3A-C18114997AF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C427DDE8-59EE-4372-8B3A-C18114997AF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE6425D6-E616-47F2-8A52-D52414FE910C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE6425D6-E616-47F2-8A52-D52414FE910C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE6425D6-E616-47F2-8A52-D52414FE910C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE6425D6-E616-47F2-8A52-D52414FE910C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
