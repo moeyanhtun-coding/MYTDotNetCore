@@ -19,6 +19,13 @@ namespace MYTDotNetCore.WindowFormsApp.Queries
            ,@BlogAuthor
            ,@BlogContent)";
 
+        public static string BlogUpdate { get; } =
+            @"UPDATE [dbo].[Tbl_Blog]
+               SET [BlogTitle] = @BlogTitle
+                  ,[BlogAuthor] = @BlogAuthor 
+                  ,[BlogContent] = @BlogContent
+             WHERE BlogId = @BlogId";
+
         public static string BlogLists { get; } =
             @"SELECT [BlogId]
               ,[BlogTitle]

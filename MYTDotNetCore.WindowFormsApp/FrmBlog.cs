@@ -25,10 +25,36 @@ public partial class FrmBlog : Form
         );
         _blogId = blogId;
         string query = "select * from Tbl_Blog where BlogId = @BlogId";
-        var model = _dapperService.QueryFirstOrDefault(query, new BlogModel { BlogId = blogId });
+        var model = _dapperService.QueryFirstOrDefault<BlogModel>(query, new BlogModel { BlogId = blogId });
         txtTitle.Text = model.BlogTitle;
         txtAuthor.Text = model.BlogAuthor;
         txtContent.Text = model.BlogContent;
+
+        btnSave.Visible = false;
+        btnUpdate.Visible = true;
+    }
+    private void btnUpdate_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            BlogModel model = new BlogModel()
+            {
+                BlogId = _blogId,
+                BlogTitle = txtTitle.Text.Trim(),
+                BlogAuthor = txtAuthor.Text.Trim(),
+                BlogContent = txtContent.Text.Trim(),
+            };
+
+            int result = _dapperService.Execute(Queries.BlogQuery.BlogUpdate, model);
+            string message = result > 0 ? "Update Success" : "Update Fail";
+            MessageBox.Show(message);
+
+            this.Close();
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.ToString());
+        }
     }
 
     private void btnCancel_Click(object sender, EventArgs e)
@@ -63,8 +89,8 @@ public partial class FrmBlog : Form
         txtTitle.Clear();
         txtAuthor.Clear();
         txtContent.Clear();
-
         txtTitle.Focus();
     }
+
 
 }

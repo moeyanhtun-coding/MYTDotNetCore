@@ -29,35 +29,40 @@ namespace MYTDotNetCore.WindowFormsApp
             BlogLists();
         }
 
-
         private void dgvBlog_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.ColumnIndex < 0) return;
             int blogId = Convert.ToInt32(dgvBlog.Rows[e.RowIndex].Cells["colId"].Value);
 
             if (e.ColumnIndex == (int)EnumFormControlType.Edit)
             {
-                FrmBlog frm = new FrmBlog();
-                frm.ShowDialog(blogIds);
+                FrmBlog frm = new FrmBlog(blogId);
+                frm.ShowDialog();
+                BlogLists();
             }
             else if (e.ColumnIndex == (int)EnumFormControlType.Delete)
             {
                 var dialogResult = MessageBox.Show("Are you sure want to delete?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dialogResult != DialogResult.Yes) return;
-                DeletBlog(blogId);
+                MessageBox.Show(DeleteBlog(blogId));
+                BlogLists();
             }
         }
+
         private void BlogLists()
         {
             List<BlogModel> lst = _dapperService.Query<BlogModel>(Queries.BlogQuery.BlogLists);
             dgvBlog.DataSource = lst;
         }
-        private void DeletBlog(int id)
+
+        private string DeleteBlog(int id)
         {
             int result = _dapperService.Execute(
                     Queries.BlogQuery.BlogDelete,
                     new BlogModel { BlogId = id }
                 );
             string message = result > 0 ? "Delete Successful" : "Delete Fail";
+            return message;
         }
     }
 }
