@@ -26,21 +26,33 @@ namespace MYTDotNetCore.WindowFormsApp
 
         private void FrmBlogList_Load(object sender, EventArgs e)
         {
-            List<BlogModel> lst = _dapperService.Query<BlogModel>(Queries.BlogQuery.BlogLists);
-            dgvBlog.DataSource = lst;
+            BlogLists();
         }
+
 
         private void dgvBlog_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex == (int)EnumFormControlType.Edit) { }
             else if (e.ColumnIndex == (int)EnumFormControlType.Delete)
             {
-                int result = _dapperService.Execute(
-                    Queries.BlogQuery.BlogDelete,
-                    new BlogModel { BlogId = 1 }
-                );
-                string message = result > 0 ? "Delete Successful" : "Delete Fail";
+                var dialogResult = MessageBox.Show("Are you sure want to delete?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult != DialogResult.Yes) return;
+                int blogId = Convert.ToInt32(dgvBlog.Rows[e.RowIndex].Cells["colId"].Value);
+                DeletBlog(blogId);
             }
+        }
+        private void BlogLists()
+        {
+            List<BlogModel> lst = _dapperService.Query<BlogModel>(Queries.BlogQuery.BlogLists);
+            dgvBlog.DataSource = lst;
+        }
+        private void DeletBlog(int id)
+        {
+            int result = _dapperService.Execute(
+                    Queries.BlogQuery.BlogDelete,
+                    new BlogModel { BlogId = id }
+                );
+            string message = result > 0 ? "Delete Successful" : "Delete Fail";
         }
     }
 }
