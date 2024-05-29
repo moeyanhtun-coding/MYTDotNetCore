@@ -32,12 +32,17 @@ namespace MYTDotNetCore.WindowFormsApp
 
         private void dgvBlog_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == (int)EnumFormControlType.Edit) { }
+            int blogId = Convert.ToInt32(dgvBlog.Rows[e.RowIndex].Cells["colId"].Value);
+
+            if (e.ColumnIndex == (int)EnumFormControlType.Edit)
+            {
+                FrmBlog frm = new FrmBlog();
+                frm.ShowDialog(blogIds);
+            }
             else if (e.ColumnIndex == (int)EnumFormControlType.Delete)
             {
                 var dialogResult = MessageBox.Show("Are you sure want to delete?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dialogResult != DialogResult.Yes) return;
-                int blogId = Convert.ToInt32(dgvBlog.Rows[e.RowIndex].Cells["colId"].Value);
                 DeletBlog(blogId);
             }
         }

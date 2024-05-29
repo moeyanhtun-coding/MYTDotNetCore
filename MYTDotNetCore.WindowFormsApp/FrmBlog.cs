@@ -7,6 +7,7 @@ namespace MYTDotNetCore.WindowFormsApp;
 public partial class FrmBlog : Form
 {
     private readonly DapperService _dapperService;
+    private readonly int _blogId;
 
     public FrmBlog()
     {
@@ -14,6 +15,20 @@ public partial class FrmBlog : Form
         _dapperService = new DapperService(
             ConnectionStrings.SqlConnectionStringBuilder.ConnectionString
         );
+    }
+
+    public FrmBlog(int blogId)
+    {
+        InitializeComponent();
+        _dapperService = new DapperService(
+            ConnectionStrings.SqlConnectionStringBuilder.ConnectionString
+        );
+        _blogId = blogId;
+        string query = "select * from Tbl_Blog where BlogId = @BlogId";
+        var model = _dapperService.QueryFirstOrDefault(query, new BlogModel { BlogId = blogId });
+        txtTitle.Text = model.BlogTitle;
+        txtAuthor.Text = model.BlogAuthor;
+        txtContent.Text = model.BlogContent;
     }
 
     private void btnCancel_Click(object sender, EventArgs e)

@@ -20,7 +20,7 @@ namespace MYTDotNetCore.WindowFormsApp.Queries
            ,@BlogContent)";
 
         public static string BlogLists { get; } =
-            @"SELECT TOP (1000) [BlogId]
+            @"SELECT [BlogId]
               ,[BlogTitle]
               ,[BlogAuthor]
               ,[BlogContent]
