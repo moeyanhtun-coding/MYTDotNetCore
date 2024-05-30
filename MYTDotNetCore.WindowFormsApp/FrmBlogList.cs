@@ -52,30 +52,30 @@ namespace MYTDotNetCore.WindowFormsApp
 
             #endregion
 
-            #region switch Case
+            //#region switch Case
 
-            int index = e.ColumnIndex;
-            EnumFormControlType enumFormControlType = (EnumFormControlType)index;
+            //int index = e.ColumnIndex;
+            //EnumFormControlType enumFormControlType = (EnumFormControlType)index;
 
-            switch (enumFormControlType)
-            {
-                case EnumFormControlType.Edit:
-                    FrmBlog frm = new FrmBlog(blogId);
-                    frm.ShowDialog();
-                    BlogLists();
-                    break;
-                case EnumFormControlType.Delete:
-                    var dialogResult = MessageBox.Show("Are you sure want to delete?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult != DialogResult.Yes) return;
-                    MessageBox.Show(DeleteBlog(blogId));
-                    BlogLists();
-                    break;
-                default:
-                    MessageBox.Show("Something Was Wrong!", "",MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
-                    break;
-            }
+            //switch (enumFormControlType)
+            //{
+            //    case EnumFormControlType.Edit:
+            //        FrmBlog frm = new FrmBlog(blogId);
+            //        frm.ShowDialog();
+            //        BlogLists();
+            //        break;
+            //    case EnumFormControlType.Delete:
+            //        var dialogResult = MessageBox.Show("Are you sure want to delete?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            //        if (dialogResult != DialogResult.Yes) return;
+            //        MessageBox.Show(DeleteBlog(blogId));
+            //        BlogLists();
+            //        break;
+            //    default:
+            //        MessageBox.Show("Something Was Wrong!", "",MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+            //        break;
+            //}
 
-            #endregion
+            //#endregion
         }
         private void BlogLists()
         {
