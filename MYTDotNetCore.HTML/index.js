@@ -26,7 +26,7 @@ function createBlog(title, author, content) {
 
   localStorage.setItem(tblBlog, blogstr);
 
-  savingMessage("Saving Successful");
+  successfulMessage("Saving Successful");
   clearForm();
   getBlogTable();
 }
@@ -69,7 +69,7 @@ function updateBlog(id, title, author, content) {
   localStorage.setItem(tblBlog, blogStr);
 
   clearForm();
-  savingMessage("Updating Successful.");
+  successfulMessage("Updating Successful.");
 }
 
 // deleteBlog
@@ -80,8 +80,8 @@ function deleteBlog(id) {
   const items = lst.filter((x) => x.id !== id);
   const blogStr = JSON.stringify(items);
   localStorage.setItem(tblBlog, blogStr);
-    savingMessage("Deleting Successful")
-  getBlogTable();
+    successfulMessage("Deleting Successful")
+  getBlogTable()
 }
 
 function getBlogs() {
@@ -117,8 +117,12 @@ $("#btnSave").click(function () {
   getBlogTable();
 });
 
-function savingMessage(message) {
-  alert(message);
+function successfulMessage(message) {
+  Swal.fire({
+    title: "Successful !",
+    text: message,
+    icon: "success"
+  });
 }
 
 function errorMessage(message) {
