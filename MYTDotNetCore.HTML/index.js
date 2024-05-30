@@ -1,11 +1,14 @@
 const tblBlog = "blogs"
-updateBlog("d11851c2-6c2a-43b8-a463-7dc781abb057");
-
+createBlog();
+// updateBlog("2d8b6a79-d450-4440-8e10-f1727b7e5c33","moeyan","Moeyan", "Moe yan");
+deleteBlog("dd508422-aefe-4842-ae4c-fca39944d7a6");
+// readBlog
 function readBlog() {
     let blogs = localStorage.getItem(tblBlog);
     console.log(blogs)
 }
 
+// createBlog
 function createBlog() {
     const blogs = localStorage.getItem(tblBlog);
     console.log(blogs)
@@ -26,15 +29,46 @@ function createBlog() {
     localStorage.setItem(tblBlog, blogstr);
 }
 
-function updateBlog(id) {
+//updateBlog
+function updateBlog(id, title, author, content) {
     let blogs = localStorage.getItem(tblBlog);
     let lst = []
     if (blogs !== null) {
         lst = JSON.parse(blogs);
     }
 
-    let items = lst.filter(x => x.id === id);
+    const items = lst.filter(x => x.id === id);
 
+    if(items.length == 0){
+        console.log("No Data Found");
+        return;
+    }
+
+    const item = items[0];
+    item.title = title;
+    item.author = author;
+    item.content = content;
+
+    const index = lst.findIndex(x=> x.id === id );
+    lst[index] =item;
+
+    const blogStr = JSON.stringify(lst);
+
+    localStorage.setItem(tblBlog, blogStr);
+
+}
+
+// deleteBlog
+function deleteBlog(id){
+    let blogs = localStorage.getItem(tblBlog);
+    let lst = []
+    if(blogs !== null){
+        lst = JSON.parse(blogs);
+    }
+
+    const items = lst.filter(x=> x.id !== id);
+    const blogStr = JSON.stringify(items);
+    localStorage.setItem(tblBlog, blogStr)
 }
 
 function uuidv4() {
