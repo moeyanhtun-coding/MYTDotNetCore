@@ -74,14 +74,35 @@ function updateBlog(id, title, author, content) {
 
 // deleteBlog
 function deleteBlog(id) {
-  let result = confirm("Are you sure want to delete?");
-  if (!result) return;
-  let lst = getBlogs();
-  const items = lst.filter((x) => x.id !== id);
-  const blogStr = JSON.stringify(items);
-  localStorage.setItem(tblBlog, blogStr);
-    successfulMessage("Deleting Successful")
-  getBlogTable()
+  Swal.fire({
+    title: "Are you sure want to delete?",
+    text: "You won't be able to revert this!",
+    icon: "question",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes, delete it!"
+  }).then((result) => {
+    if (result.isConfirmed) {
+      let lst = getBlogs();
+      const items = lst.filter((x) => x.id !== id);
+      const blogStr = JSON.stringify(items);
+      localStorage.setItem(tblBlog, blogStr);
+      successfulMessage("Deleting Successful")
+      getBlogTable()
+      // Swal.fire({
+      //   title: "Deleted!",
+      //   text: "Your file has been deleted.",
+      //   icon: "success"
+      // });
+    }
+  });
+  // let lst = getBlogs();
+  // const items = lst.filter((x) => x.id !== id);
+  // const blogStr = JSON.stringify(items);
+  // localStorage.setItem(tblBlog, blogStr);
+  // successfulMessage("Deleting Successful")
+  // getBlogTable()
 }
 
 function getBlogs() {
@@ -149,12 +170,10 @@ function getBlogTable() {
             <td>${item.author}</td>
             <td>${item.content}</td>
             <td>
-                <button class="btn btn-warning" onclick="editBlog('${
-                  item.id
-                }')">Edit</button>
-                <button class="btn btn-danger" onclick="deleteBlog('${
-                  item.id
-                }')">Delete</button>
+                <button class="btn btn-warning" onclick="editBlog('${item.id
+      }')">Edit</button>
+                <button class="btn btn-danger" onclick="deleteBlog('${item.id
+      }')">Delete</button>
             </td>
         </tr>`;
     htmlRows += htmlRow;
