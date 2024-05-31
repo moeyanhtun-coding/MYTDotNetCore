@@ -41,6 +41,7 @@ function editProduct(id) {
   $("#txtName").val(item.productName);
   $("#txtDescription").val(item.productDescription);
   $("#txtPrice").val(item.productPrice);
+  $('#txtName').focus()
 }
 
 function updateProduct(id, name, description, price) {
