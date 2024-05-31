@@ -1,6 +1,7 @@
 const tblBlog = "blogs";
 let blogId = null;
 getBlogTable();
+
 //createBlog();
 // updateBlog("2d8b6a79-d450-4440-8e10-f1727b7e5c33","moeyan","Moeyan", "Moe yan");
 //deleteBlog("dd508422-aefe-4842-ae4c-fca39944d7a6");
@@ -25,8 +26,6 @@ function createBlog(title, author, content) {
   const blogstr = JSON.stringify(lst);
 
   localStorage.setItem(tblBlog, blogstr);
-
-  successfulMessage("Saving Successful");
   clearForm();
   getBlogTable();
 }
@@ -70,39 +69,29 @@ function updateBlog(id, title, author, content) {
 
   clearForm();
   successfulMessage("Updating Successful.");
+  getBlogTable();
 }
 
 // deleteBlog
 function deleteBlog(id) {
-  Swal.fire({
-    title: "Are you sure want to delete?",
-    text: "You won't be able to revert this!",
-    icon: "question",
-    showCancelButton: true,
-    confirmButtonColor: "#3085d6",
-    cancelButtonColor: "#d33",
-    confirmButtonText: "Yes, delete it!"
-  }).then((result) => {
-    if (result.isConfirmed) {
-      let lst = getBlogs();
-      const items = lst.filter((x) => x.id !== id);
-      const blogStr = JSON.stringify(items);
-      localStorage.setItem(tblBlog, blogStr);
-      successfulMessage("Deleting Successful")
-      getBlogTable()
-      // Swal.fire({
-      //   title: "Deleted!",
-      //   text: "Your file has been deleted.",
-      //   icon: "success"
-      // });
+  Notiflix.Confirm.show(
+    "Notiflix Confirm",
+    "Are you sure want to delete?",
+    "Yes",
+    "No",
+    function okCb() {
+      Notiflix.Loading.dots();
+      setTimeout(() => {
+        Notiflix.Loading.remove();
+        let lst = getBlogs();
+        const items = lst.filter((x) => x.id !== id);
+        const blogStr = JSON.stringify(items);
+        localStorage.setItem(tblBlog, blogStr);
+        successfulMessage("Deleting Successful");
+        getBlogTable();
+      }, 2000);
     }
-  });
-  // let lst = getBlogs();
-  // const items = lst.filter((x) => x.id !== id);
-  // const blogStr = JSON.stringify(items);
-  // localStorage.setItem(tblBlog, blogStr);
-  // successfulMessage("Deleting Successful")
-  // getBlogTable()
+  );
 }
 
 function getBlogs() {
@@ -129,21 +118,33 @@ $("#btnSave").click(function () {
   const content = $("#txtContent").val();
 
   if (blogId === null) {
-    createBlog(title, author, content);
+    Notiflix.Loading.circle();
+    setTimeout(() => {
+      Notiflix.Loading.remove();
+      createBlog(title, author, content);
+      successfulMessage("Saving Successful");
+    }, 1000);
   } else {
-    updateBlog(blogId, title, author, content);
-    blogId = null;
+    Notiflix.Loading.circle();
+    setTimeout(() => {
+      Notiflix.Loading.remove();
+      updateBlog(blogId, title, author, content);
+      successfulMessage("Saving Successful");
+      blogId = null;
+    }, 1000);
   }
 
   getBlogTable();
 });
 
 function successfulMessage(message) {
-  Notiflix.Notify.success(message);
+  Notiflix.Report.success("Success", message, "Okay");
+  // Notiflix.Notify.success(message);
 }
 
 function errorMessage(message) {
-  Notiflix.Notify.failure(message);
+  // Notiflix.Notify.failure(message);
+  Notiflix.Report.failure("Failure", message, "Okay");
 }
 
 function clearForm() {
@@ -166,10 +167,12 @@ function getBlogTable() {
             <td>${item.author}</td>
             <td>${item.content}</td>
             <td>
-                <button class="btn btn-warning" onclick="editBlog('${item.id
-      }')">Edit</button>
-                <button class="btn btn-danger" onclick="deleteBlog('${item.id
-      }')">Delete</button>
+                <button class="btn btn-warning" onclick="editBlog('${
+                  item.id
+                }')">Edit</button>
+                <button class="btn btn-danger" onclick="deleteBlog('${
+                  item.id
+                }')">Delete</button>
             </td>
         </tr>`;
     htmlRows += htmlRow;

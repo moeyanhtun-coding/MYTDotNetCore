@@ -149,7 +149,7 @@ function addToCartProduct(id) {
   cartLst.push(item);
   const cartStr = JSON.stringify(cartLst);
   localStorage.setItem(tblCart, cartStr);
-  getCartTable()
+  getCartTable();
 }
 
 function getCart() {
