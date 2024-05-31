@@ -3,8 +3,8 @@ let blogId = null;
 getBlogTable();
 
 // for (let i = 0; i < 100; i++) {
-//   let no = i+1;
-//   createBlog("title " + no, "author " + no, "content "+ no);  
+//   let no = i + 1;
+//   createBlog("title " + no, "author " + no, "content " + no);
 // }
 //createBlog();
 // updateBlog("2d8b6a79-d450-4440-8e10-f1727b7e5c33","moeyan","Moeyan", "Moe yan");
@@ -159,6 +159,10 @@ function clearForm() {
 }
 
 function getBlogTable() {
+  if ($.fn.DataTable.isDataTable('#datatable')) {
+    $('#datatable').DataTable().destroy();
+  }
+
   const lst = getBlogs();
   let count = 0;
   let htmlRows = "";
@@ -171,16 +175,15 @@ function getBlogTable() {
             <td>${item.author}</td>
             <td>${item.content}</td>
             <td>
-                <button class="btn btn-warning" onclick="editBlog('${
-                  item.id
-                }')">Edit</button>
-                <button class="btn btn-danger" onclick="deleteBlog('${
-                  item.id
-                }')">Delete</button>
+                <button class="btn btn-warning" onclick="editBlog('${item.id
+      }')">Edit</button>
+                <button class="btn btn-danger" onclick="deleteBlog('${item.id
+      }')">Delete</button>
             </td>
         </tr>`;
     htmlRows += htmlRow;
   });
 
   $("#tbody").html(htmlRows);
+  new DataTable('#datatable');
 }
