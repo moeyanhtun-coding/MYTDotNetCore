@@ -4,6 +4,11 @@ let productId = null;
 getProductTable();
 getCartTable()
 
+// for (let i = 0; i < 100; i++) {
+//   let no = i + 1;
+//   createProduct("Product " + no, "Description " + no, "1500");
+// }
+
 function createProduct(name, description, price) {
   const lst = getProduct();
   const requestProduct = {
@@ -16,10 +21,11 @@ function createProduct(name, description, price) {
   const productStr = JSON.stringify(lst);
 
   localStorage.setItem(tblProducts, productStr);
-  successMessage("Create Message");
+  // successMessage("Create Message");
   getProductTable();
   getCartTable();
   clearForm();
+  successMessage("Creating Successful")
 }
 
 function editProduct(id) {
@@ -52,19 +58,30 @@ function updateProduct(id, name, description, price) {
 
   let productStr = JSON.stringify(lst);
   localStorage.setItem(tblProducts, productStr);
-  successMessage("Successful Updated!");
+  successMessage("Updating Successful");
   getProductTable();
   clearForm();
 }
 
 function deleteProduct(id) {
-  let lst = getProduct();
-  let items = lst.filter((x) => x.ProductId !== id);
-  lst = items;
-  let productStr = JSON.stringify(lst);
-  localStorage.setItem(tblProducts, productStr);
-  getProductTable();
-  successMessage("Deleting Successful");
+  Notiflix.Confirm.show(
+    'Confirm',
+    'Are you sure want ot delete?',
+    'Yes',
+    'No',
+    function okCb() {
+      Notiflix.Loading.dots();
+      setTimeout(() => {
+        Notiflix.Loading.remove();
+        let lst = getProduct();
+        let items = lst.filter((x) => x.ProductId !== id);
+        lst = items;
+        let productStr = JSON.stringify(lst);
+        localStorage.setItem(tblProducts, productStr);
+        getProductTable();
+        successMessage("Deleting Successful");
+      }, 1000);
+    },)
 }
 
 function uuidv4() {
@@ -86,11 +103,19 @@ function getProduct() {
 }
 
 function successMessage(message) {
-  alert(message);
+  Notiflix.Report.success(
+    'Success',
+    message,
+    'Okay',
+  );
 }
 
 function errorMessage(message) {
-  alert(message);
+  Notiflix.Report.failure(
+    'Failure',
+    message,
+    'Okay',
+  );
 }
 
 $("#btnSave").click(function () {
@@ -99,13 +124,25 @@ $("#btnSave").click(function () {
   const price = $("#txtPrice").val();
 
   if (productId === null) {
-    createProduct(name, description, price);
+    Notiflix.Loading.dots();
+    setTimeout(() => {
+      Notiflix.Loading.remove();
+      createProduct(name, description, price);
+    }, 1000);
   } else {
-    updateProduct(productId, name, description, price);
+    Notiflix.Loading.dots();
+    setTimeout(() => {
+      Notiflix.Loading.remove();
+      updateProduct(productId, name, description, price);
+    }, 1000);
   }
 });
 
 function getProductTable() {
+  if ($.fn.DataTable.isDataTable('#datatable')) {
+    $('#datatable').DataTable().destroy();
+  }
+
   const lst = getProduct();
   let count = 0;
   let htmlRows = "";
@@ -131,6 +168,7 @@ function getProductTable() {
     htmlRows += htmlRow;
   });
   $("#tBody").html(htmlRows);
+  new DataTable('#datatable');
 }
 
 function clearForm() {
@@ -167,6 +205,10 @@ function getCart() {
 }
 
 function getCartTable() {
+  if ($.fn.DataTable.isDataTable('#cartDataTable')) {
+    $('#cartDataTable').DataTable().destroy();
+  }
+
   const lst = getCart();
   let count = 0;
   let htmlRows = "";
@@ -178,14 +220,8 @@ function getCartTable() {
       <td>
         <div class="d-flex">
           <button class="btn btn-warning" onclick="plusCart('${item.cartId}')"><i class="fa-solid fa-plus"></i></button>
-          <div>
-            <input style="width: 50px"
-              type="number"
-              class="form-control"
-              id="txtQuantity"
-              value="${item.cartQuantity}"
-              Disabled
-            />
+          <div style="width:30px; height:30px;" class="text-center d-flex justify-content-center align-items-center">
+            ${item.cartQuantity}
           </div>
           <button class="btn btn-danger" onclick="minusCart('${item.cartId}')"><i class="fa-solid fa-minus"></i></button>
         </div>
@@ -199,15 +235,29 @@ function getCartTable() {
     htmlRows += htmlRow;
   });
   $("#cartTable").html(htmlRows);
+  new DataTable('#cartDataTable');
 }
 
 function deleteCart(id) {
-  let lst = getCart();
-  let items = lst.filter(x => x.cartId !== id);
-  lst = items;
-  const cartStr = JSON.stringify(lst);
-  localStorage.setItem(tblCart, cartStr);
-  getCartTable();
+  Notiflix.Confirm.show(
+    'Confirm',
+    'Are you sure want ot delete?',
+    'Yes',
+    'No',
+    function okCb() {
+      Notiflix.Loading.dots();
+      setTimeout(() => {
+        Notiflix.Loading.remove();
+        let lst = getCart();
+        let items = lst.filter(x => x.cartId !== id);
+        lst = items;
+        const cartStr = JSON.stringify(lst);
+        localStorage.setItem(tblCart, cartStr);
+        getCartTable();
+        successMessage("Deleting Successful")
+      }, 1000);
+    },)
+
 }
 
 function plusCart(id) {
