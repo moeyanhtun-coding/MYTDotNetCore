@@ -2,6 +2,7 @@ const tblProducts = "product";
 const tblCart = "cart";
 let productId = null;
 getProductTable();
+getCartTable()
 
 function createProduct(name, description, price) {
   const lst = getProduct();
@@ -17,6 +18,7 @@ function createProduct(name, description, price) {
   localStorage.setItem(tblProducts, productStr);
   successMessage("Create Message");
   getProductTable();
+  getCartTable();
   clearForm();
 }
 
@@ -115,17 +117,14 @@ function getProductTable() {
             <td>${item.productDescription}</td>
             <td>${item.productPrice} MMK</td>
             <td>
-                <button class="btn btn-warning" onclick="editProduct('${
-                  item.ProductId
-                }')">Edit</button>
-                <button class="btn btn-danger" onclick="deleteProduct('${
-                  item.ProductId
-                }')">Delete</button>
+                <button class="btn btn-warning" onclick="editProduct('${item.ProductId
+      }')">Edit</button>
+                <button class="btn btn-danger" onclick="deleteProduct('${item.ProductId
+      }')">Delete</button>
             </td>
             <td>
-                <button class="btn btn-info" onclick="addToCartProduct('${
-                  item.ProductId
-                }')"><i class="fa-solid fa-plus"></i></button>  
+                <button class="btn btn-info" onclick="addToCartProduct('${item.ProductId
+      }')"><i class="fa-solid fa-plus"></i></button>  
             </td>
         </tr>
         `;
@@ -146,7 +145,13 @@ function addToCartProduct(id) {
   let lst = getProduct();
   let items = lst.filter((x) => x.ProductId === id);
   let item = items[0];
-  cartLst.push(item);
+  const requestCart = {
+    cartId: uuidv4(),
+    cartProduct: item.productName,
+    cartPrice: item.productPrice,
+    cartQuantity: 1
+  }
+  cartLst.push(requestCart);
   const cartStr = JSON.stringify(cartLst);
   localStorage.setItem(tblCart, cartStr);
   getCartTable();
@@ -166,18 +171,63 @@ function getCartTable() {
   let count = 0;
   let htmlRows = "";
   lst.forEach((item) => {
-    let htmlRow = ` <tr>
-        <th>${++count}</th>
-        <td>${item.productName}</td>
-        <td>${item.productPrice}</td>
-        <td>
-            <button class="btn btn-warning" onclick=""><i class="fa-solid fa-plus"></i></button>
-            <button class="btn btn-danger" onclick=""><i class="fa-solid fa-minus"></i></button>
-        </td>
-        <td>MMK</td>
+    let htmlRow = `<tr>
+      <th>${++count}</th>
+      <td>${item.cartProduct}</td>
+      <td>${item.cartPrice} MMK</td>
+      <td>
+        <div class="d-flex">
+          <button class="btn btn-warning" onclick="plusCart('${item.cartId}')"><i class="fa-solid fa-plus"></i></button>
+          <div>
+            <input style="width: 50px"
+              type="number"
+              class="form-control"
+              id="txtQuantity"
+              value="${item.cartQuantity}"
+              Disabled
+            />
+          </div>
+          <button class="btn btn-danger" onclick="minusCart('${item.cartId}')"><i class="fa-solid fa-minus"></i></button>
+        </div>
+      </td>
+      <td>${item.cartPrice * item.cartQuantity} MMK</td>
+      <td>
+        <button class="btn btn-danger" onclick="deleteCart('${item.cartId}')"><i class="fa-solid fa-trash"></i></button>
+      </td>
     </tr>
     `;
     htmlRows += htmlRow;
   });
   $("#cartTable").html(htmlRows);
+}
+
+function deleteCart(id) {
+  let lst = getCart();
+  let items = lst.filter(x => x.cartId !== id);
+  lst = items;
+  const cartStr = JSON.stringify(lst);
+  localStorage.setItem(tblCart, cartStr);
+  getCartTable();
+}
+
+function plusCart(id) {
+  let cartLst = getCart();
+  let index = cartLst.findIndex((x) => x.cartId === id);
+  if (index !== null) {
+    cartLst[index].cartQuantity += 1;
+    const cartStr = JSON.stringify(cartLst);
+    localStorage.setItem(tblCart, cartStr);
+    getCartTable();
+  }
+}
+
+function minusCart(id) {
+  let cartLst = getCart();
+  let index = cartLst.findIndex((x) => x.cartId === id);
+  if (index !== null && cartLst[index].cartQuantity > 1) {
+    cartLst[index].cartQuantity -= 1;
+    const cartStr = JSON.stringify(cartLst);
+    localStorage.setItem(tblCart, cartStr);
+    getCartTable();
+  }
 }
