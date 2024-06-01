@@ -35,7 +35,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MYTDotNetCore.NLayer.Busine
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MYTDotNetCore.NLayer.DataAccess", "MYTDotNetCore.NLayer.DataAccess\MYTDotNetCore.NLayer.DataAccess.csproj", "{AE6425D6-E616-47F2-8A52-D52414FE910C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MYTDotNetCore.WindowFormAppSqlInjection", "MYTDotNetCore.WindowFormAppSqlInjection\MYTDotNetCore.WindowFormAppSqlInjection.csproj", "{5BF8F5B5-7BBF-4763-8973-F93E11147509}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MYTDotNetCore.WindowFormAppSqlInjection", "MYTDotNetCore.WindowFormAppSqlInjection\MYTDotNetCore.WindowFormAppSqlInjection.csproj", "{5BF8F5B5-7BBF-4763-8973-F93E11147509}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MYTDotNetCore.MvcApp", "MYTDotNetCore.MvcApp\MYTDotNetCore.MvcApp.csproj", "{7F2C38CC-736A-4C98-A850-7F3864D1FBDA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -99,6 +101,10 @@ Global
 		{5BF8F5B5-7BBF-4763-8973-F93E11147509}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5BF8F5B5-7BBF-4763-8973-F93E11147509}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5BF8F5B5-7BBF-4763-8973-F93E11147509}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F2C38CC-736A-4C98-A850-7F3864D1FBDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F2C38CC-736A-4C98-A850-7F3864D1FBDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F2C38CC-736A-4C98-A850-7F3864D1FBDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F2C38CC-736A-4C98-A850-7F3864D1FBDA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

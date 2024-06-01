@@ -1,0 +1,29 @@
+﻿@model List<BlogModel>;
+@{
+    ViewData["Title"] = "Blog Page";
+    int count = 0;
+}
+
+<h4>Blog</h4>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Title</th>
+            <th scope="col">Author</th>
+            <th scope="col">Content</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(BlogModel blog in Model)
+        {
+            <tr>
+                <th scope="row">@(++count)</th>
+                <td>@blog.BlogTitle</td>
+                <td>@blog.BlogAuthor</td>
+                <td>@blog.BlogContent</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
