@@ -1,6 +1,6 @@
 ﻿@model List<BlogModel>;
 @{
-    ViewData["Title"] = "Blog Page";
+    ViewData["Title"] = "Blog";
     int count = 0;
 }
 
@@ -15,7 +15,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach(BlogModel blog in Model)
+        @foreach (BlogModel blog in Model)
         {
             <tr>
                 <th scope="row">@(++count)</th>
@@ -26,4 +26,3 @@
         }
     </tbody>
 </table>
-

@@ -1,0 +1,18 @@
+@model BlogModel;
+@{
+    ViewData["Title"] = "Blog";
+}
+<div class="mb-3">
+    <label for="BlogTitle" class="form-label">Blog Title</label>
+    <input type="email" class="form-control" id="BlogTitle" name="BlogTitle" value="@Model.BlogTitle"
+        placeholder="name@example.com">
+</div>
+<div class="mb-3">
+    <label for="BlogAuthor" class="form-label">Blog Author</label>
+    <input type="email" class="form-control" id="BlogAuthor" name="BlogAuthor" value="@Model.BlogAuthor"
+        placeholder="name@example.com">
+</div>
+<div class="mb-3">
+    <label for="BlogContent" class="form-label">Blog Content</label>
+    <textarea class="form-control" id="BlogContent" name="BlogContent" value="" rows="3"></textarea>
+</div>
