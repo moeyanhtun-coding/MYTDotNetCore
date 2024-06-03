@@ -1,6 +1,6 @@
 const tblProducts = "product";
 const tblCart = "cart";
-let productId = null;
+let editProductId = null;
 getProductTable();
 getCartTable()
 
@@ -12,7 +12,7 @@ getCartTable()
 function createProduct(name, description, price) {
   const lst = getProduct();
   const requestProduct = {
-    ProductId: uuidv4(),
+    productId: uuidv4(),
     productName: name,
     productDescription: description,
     productPrice: price,
@@ -30,14 +30,14 @@ function createProduct(name, description, price) {
 
 function editProduct(id) {
   let lst = getProduct();
-  const items = lst.filter((item) => item.ProductId === id);
+  const items = lst.filter((item) => item.productId === id);
   if (items.length == 0) {
     errorMessage("No Data Found");
   }
   const item = items[0];
   console.log(item);
 
-  productId = item.ProductId;
+  editProductId = item.productId;
   $("#txtName").val(item.productName);
   $("#txtDescription").val(item.productDescription);
   $("#txtPrice").val(item.productPrice);
@@ -46,7 +46,7 @@ function editProduct(id) {
 
 function updateProduct(id, name, description, price) {
   let lst = getProduct();
-  const items = lst.filter((item) => item.ProductId === id);
+  const items = lst.filter((item) => item.productId === id);
   if (items.length === 0) {
     errorMessage("No Data Found");
   }
@@ -54,7 +54,7 @@ function updateProduct(id, name, description, price) {
   (item.productName = name),
     (item.productDescription = description),
     (item.productPrice = price);
-  let index = items.findIndex((x) => x.ProductId === id);
+  let index = items.findIndex((x) => x.productId === id);
   lst[index] = item;
 
   let productStr = JSON.stringify(lst);
@@ -75,7 +75,7 @@ function deleteProduct(id) {
       setTimeout(() => {
         Notiflix.Loading.remove();
         let lst = getProduct();
-        let items = lst.filter((x) => x.ProductId !== id);
+        let items = lst.filter((x) => x.productId !== id);
         lst = items;
         let productStr = JSON.stringify(lst);
         localStorage.setItem(tblProducts, productStr);
@@ -124,7 +124,7 @@ $("#btnSave").click(function () {
   const description = $("#txtDescription").val();
   const price = $("#txtPrice").val();
 
-  if (productId === null) {
+  if (editProductId === null) {
     Notiflix.Loading.dots();
     setTimeout(() => {
       Notiflix.Loading.remove();
@@ -155,13 +155,13 @@ function getProductTable() {
             <td>${item.productDescription}</td>
             <td>${item.productPrice} MMK</td>
             <td>
-                <button class="btn btn-warning" onclick="editProduct('${item.ProductId
+                <button class="btn btn-warning" onclick="editProduct('${item.productId
       }')">Edit</button>
-                <button class="btn btn-danger" onclick="deleteProduct('${item.ProductId
+                <button class="btn btn-danger" onclick="deleteProduct('${item.productId
       }')">Delete</button>
             </td>
             <td>
-                <button class="btn btn-info" onclick="addToCartProduct('${item.ProductId
+                <button class="btn btn-info" onclick="addToCartProduct('${item.productId
       }')"><i class="fa-solid fa-plus"></i></button>  
             </td>
         </tr>
@@ -182,17 +182,28 @@ function clearForm() {
 function addToCartProduct(id) {
   let cartLst = getCart();
   let lst = getProduct();
-  let items = lst.filter((x) => x.ProductId === id);
-  let item = items[0];
-  const requestCart = {
-    cartId: uuidv4(),
-    cartProduct: item.productName,
-    cartPrice: item.productPrice,
-    cartQuantity: 1
+
+  let productLst = lst.filter((x) => x.productId === id);
+  let product = productLst[0];
+
+  let index = cartLst.findIndex(x => x.cartProductId === id);
+  if (index === -1) {
+    const requestCart = {
+      cartId: uuidv4(),
+      cartProductId: product.productId,
+      cartProductName: product.productName,
+      cartPrice: product.productPrice,
+      cartQuantity: 1
+    }
+    cartLst.push(requestCart);
   }
-  cartLst.push(requestCart);
+  else{
+    cartLst[index].cartQuantity += 1;
+  }
+
   const cartStr = JSON.stringify(cartLst);
   localStorage.setItem(tblCart, cartStr);
+
   getCartTable();
 }
 
