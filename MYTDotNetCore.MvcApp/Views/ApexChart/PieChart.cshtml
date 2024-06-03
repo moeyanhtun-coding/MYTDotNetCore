@@ -1,8 +1,9 @@
-﻿@{
-    List<int> _series = new List<int> { 44, 55, 13, 43, 22 };
-    List<string> _labels = new List<string> { "Team A", "Team B", "Team C", "Team D", "Team E" };
-}
+﻿@model ApexChartPieChartResponseModel;
+@{
 
+    List<int> _series = Model.Series;
+    List<string> _labels = Model.Lables;
+}
 <div id="chart"></div>  
 
 @section scripts{
@@ -10,12 +11,12 @@
         let series = @Html.Raw(JsonConvert.SerializeObject(_series));
         let lables = @Html.Raw(JsonConvert.SerializeObject(_labels));
         var options = {
-            series: [44, 55, 13, 43, 22],
+            series: series,
             chart: {
                 width: 380,
                 type: "pie",
             },
-            labels: ["Team A", "Team B", "Team C", "Team D", "Team E"],
+            labels: lables,
             responsive: [{
                 breakpoint: 480,
                 options: {
