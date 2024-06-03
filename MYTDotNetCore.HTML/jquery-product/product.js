@@ -2,7 +2,7 @@ const tblProducts = "product";
 const tblCart = "cart";
 let editProductId = null;
 getProductTable();
-getCartTable()
+getCartTable();
 
 // for (let i = 0; i < 100; i++) {
 //   let no = i + 1;
@@ -25,7 +25,7 @@ function createProduct(name, description, price) {
   getProductTable();
   getCartTable();
   clearForm();
-  successMessage("Creating Successful")
+  successMessage("Creating Successful");
 }
 
 function editProduct(id) {
@@ -41,7 +41,7 @@ function editProduct(id) {
   $("#txtName").val(item.productName);
   $("#txtDescription").val(item.productDescription);
   $("#txtPrice").val(item.productPrice);
-  $('#txtName').focus()
+  $("#txtName").focus();
 }
 
 function updateProduct(id, name, description, price) {
@@ -66,10 +66,10 @@ function updateProduct(id, name, description, price) {
 
 function deleteProduct(id) {
   Notiflix.Confirm.show(
-    'Confirm',
-    'Are you sure want ot delete?',
-    'Yes',
-    'No',
+    "Confirm",
+    "Are you sure want ot delete?",
+    "Yes",
+    "No",
     function okCb() {
       Notiflix.Loading.dots();
       setTimeout(() => {
@@ -82,7 +82,8 @@ function deleteProduct(id) {
         getProductTable();
         successMessage("Deleting Successful");
       }, 1000);
-    },)
+    }
+  );
 }
 
 function uuidv4() {
@@ -104,19 +105,11 @@ function getProduct() {
 }
 
 function successMessage(message) {
-  Notiflix.Report.success(
-    'Success',
-    message,
-    'Okay',
-  );
+  Notiflix.Report.success("Success", message, "Okay");
 }
 
 function errorMessage(message) {
-  Notiflix.Report.failure(
-    'Failure',
-    message,
-    'Okay',
-  );
+  Notiflix.Report.failure("Failure", message, "Okay");
 }
 
 $("#btnSave").click(function () {
@@ -134,14 +127,14 @@ $("#btnSave").click(function () {
     Notiflix.Loading.dots();
     setTimeout(() => {
       Notiflix.Loading.remove();
-      updateProduct(productId, name, description, price);
+      updateProduct(editProductId, name, description, price);
     }, 1000);
   }
 });
 
 function getProductTable() {
-  if ($.fn.DataTable.isDataTable('#datatable')) {
-    $('#datatable').DataTable().destroy();
+  if ($.fn.DataTable.isDataTable("#datatable")) {
+    $("#datatable").DataTable().destroy();
   }
 
   const lst = getProduct();
@@ -155,21 +148,24 @@ function getProductTable() {
             <td>${item.productDescription}</td>
             <td>${item.productPrice} MMK</td>
             <td>
-                <button class="btn btn-warning" onclick="editProduct('${item.productId
-      }')">Edit</button>
-                <button class="btn btn-danger" onclick="deleteProduct('${item.productId
-      }')">Delete</button>
+                <button class="btn btn-warning" onclick="editProduct('${
+                  item.productId
+                }')">Edit</button>
+                <button class="btn btn-danger" onclick="deleteProduct('${
+                  item.productId
+                }')">Delete</button>
             </td>
             <td>
-                <button class="btn btn-info" onclick="addToCartProduct('${item.productId
-      }')"><i class="fa-solid fa-plus"></i></button>  
+                <button class="btn btn-info" onclick="addToCartProduct('${
+                  item.productId
+                }')"><i class="fa-solid fa-plus"></i></button>  
             </td>
         </tr>
         `;
     htmlRows += htmlRow;
   });
   $("#tBody").html(htmlRows);
-  new DataTable('#datatable');
+  new DataTable("#datatable");
 }
 
 function clearForm() {
@@ -186,18 +182,17 @@ function addToCartProduct(id) {
   let productLst = lst.filter((x) => x.productId === id);
   let product = productLst[0];
 
-  let index = cartLst.findIndex(x => x.cartProductId === id);
+  let index = cartLst.findIndex((x) => x.cartProductId === id);
   if (index === -1) {
     const requestCart = {
       cartId: uuidv4(),
       cartProductId: product.productId,
       cartProductName: product.productName,
       cartPrice: product.productPrice,
-      cartQuantity: 1
-    }
+      cartQuantity: 1,
+    };
     cartLst.push(requestCart);
-  }
-  else{
+  } else {
     cartLst[index].cartQuantity += 1;
   }
 
@@ -217,8 +212,8 @@ function getCart() {
 }
 
 function getCartTable() {
-  if ($.fn.DataTable.isDataTable('#cartDataTable')) {
-    $('#cartDataTable').DataTable().destroy();
+  if ($.fn.DataTable.isDataTable("#cartDataTable")) {
+    $("#cartDataTable").DataTable().destroy();
   }
 
   const lst = getCart();
@@ -227,49 +222,55 @@ function getCartTable() {
   lst.forEach((item) => {
     let htmlRow = `<tr>
       <th>${++count}</th>
-      <td>${item.cartProduct}</td>
+      <td>${item.cartProductName}</td>
       <td>${item.cartPrice} MMK</td>
       <td>
         <div class="d-flex">
-          <button class="btn btn-warning" onclick="plusCart('${item.cartId}')"><i class="fa-solid fa-plus"></i></button>
+          <button class="btn btn-warning" onclick="plusCart('${
+            item.cartId
+          }')"><i class="fa-solid fa-plus"></i></button>
           <div style="width:30px; height:30px;" class="text-center d-flex justify-content-center align-items-center">
             ${item.cartQuantity}
           </div>
-          <button class="btn btn-danger" onclick="minusCart('${item.cartId}')"><i class="fa-solid fa-minus"></i></button>
+          <button class="btn btn-danger" onclick="minusCart('${
+            item.cartId
+          }')"><i class="fa-solid fa-minus"></i></button>
         </div>
       </td>
       <td>${item.cartPrice * item.cartQuantity} MMK</td>
       <td>
-        <button class="btn btn-danger" onclick="deleteCart('${item.cartId}')"><i class="fa-solid fa-trash"></i></button>
+        <button class="btn btn-danger" onclick="deleteCart('${
+          item.cartId
+        }')"><i class="fa-solid fa-trash"></i></button>
       </td>
     </tr>
     `;
     htmlRows += htmlRow;
   });
   $("#cartTable").html(htmlRows);
-  new DataTable('#cartDataTable');
+  new DataTable("#cartDataTable");
 }
 
 function deleteCart(id) {
   Notiflix.Confirm.show(
-    'Confirm',
-    'Are you sure want ot delete?',
-    'Yes',
-    'No',
+    "Confirm",
+    "Are you sure want ot delete?",
+    "Yes",
+    "No",
     function okCb() {
       Notiflix.Loading.dots();
       setTimeout(() => {
         Notiflix.Loading.remove();
         let lst = getCart();
-        let items = lst.filter(x => x.cartId !== id);
+        let items = lst.filter((x) => x.cartId !== id);
         lst = items;
         const cartStr = JSON.stringify(lst);
         localStorage.setItem(tblCart, cartStr);
         getCartTable();
-        successMessage("Deleting Successful")
+        successMessage("Deleting Successful");
       }, 1000);
-    },)
-
+    }
+  );
 }
 
 function plusCart(id) {
