@@ -2,21 +2,21 @@
 @{
 
     List<int> _series = Model.Series;
-    List<string> _labels = Model.Lables;
+    List<string> _labels = Model.Labels;
 }
 <div id="chart"></div>  
 
 @section scripts{
     <script>
         let series = @Html.Raw(JsonConvert.SerializeObject(_series));
-        let lables = @Html.Raw(JsonConvert.SerializeObject(_labels));
+        let labels = @Html.Raw(JsonConvert.SerializeObject(_labels));
         var options = {
             series: series,
             chart: {
                 width: 380,
                 type: "pie",
             },
-            labels: lables,
+            labels: labels,
             responsive: [{
                 breakpoint: 480,
                 options: {

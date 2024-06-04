@@ -22,5 +22,5 @@ public class ApexChartDashedLineChartModel
 public class ApexChartDashedLineChartResponseModel
 {
     public List<ApexChartDashedLineChartModel> Series { get; set; }
-    public List<string> Lables { get; set; }
+    public List<string> Labels { get; set; }
 }

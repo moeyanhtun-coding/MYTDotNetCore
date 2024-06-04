@@ -12,5 +12,6 @@ namespace MYTDotNetCore.MvcApp.Db
         public DbSet<BlogModel> Blogs { get; set; }
         public DbSet<DashedLineChartModel> PageStatistics { get; set; }
         public DbSet<ApexChartRadarChartModel> ApexChartRadarChart { get; set; }
+        public DbSet<ApexChartColumnChartModel> ApexChartColumnChart { get; set; }
     }
 }

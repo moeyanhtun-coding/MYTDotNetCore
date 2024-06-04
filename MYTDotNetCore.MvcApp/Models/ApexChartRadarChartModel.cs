@@ -15,6 +15,6 @@ public class ApexChartRadarChartModel
 public class ApexChartRadarResponseModel
 {
     public List<int> Series { get; set; }
-    public List<string> Lables { get; set; }
+    public List<string> Labels { get; set; }
 }
 

@@ -1,13 +1,13 @@
 ﻿@model ApexChartDashedLineChartResponseModel;
 @{
     var _series = Model.Series;
-    var _lables = Model.Lables;
+    var _labels = Model.Labels;
 }
 <div id="chart"></div>
 @section scripts {
     <script>
         let _series = @Html.Raw(JsonConvert.SerializeObject(_series)) ;
-        let _lables = @Html.Raw(JsonConvert.SerializeObject(_lables));
+        let _labels = @Html.Raw(JsonConvert.SerializeObject(_labels));
         var options = {
             series: _series,
             chart: {
@@ -41,7 +41,7 @@
                 }
             },
             xaxis: {
-                categories: _lables,
+                categories: _labels,
             },
             tooltip: {
                 y: [
