@@ -10,5 +10,7 @@ namespace MYTDotNetCore.MvcApp.Db
             optionsBuilder.UseSqlServer(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
         }
         public DbSet<BlogModel> Blogs { get; set; }
+        public DbSet<DashedLineChartModel> PageStatistics { get; set; }
+        public DbSet<ApexChartRadarChartModel> ApexChartRadarChart { get; set; }
     }
 }
