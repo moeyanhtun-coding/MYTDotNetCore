@@ -11,7 +11,7 @@ namespace MYTDotNetCore.ConsoleApp.Services
     {
         public static SqlConnectionStringBuilder SqlConnectionStringBuilder = new SqlConnectionStringBuilder()
         {
-            DataSource = "AaronDGrant\\MSSQL",
+            DataSource = ".",
             InitialCatalog = "MYTDotNetCore",
             UserID = "sa",
             Password = "sa@123",

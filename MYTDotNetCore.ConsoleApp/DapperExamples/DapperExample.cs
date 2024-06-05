@@ -7,15 +7,24 @@ namespace MYTDotNetCore.ConsoleApp.DapperExamples
 {
     internal class DapperExample
     {
-        public void Run()
+        //public void Run()
+        //{
+        //    //            Read();
+        //    //Edit(1);
+        //    //Edit(11);
+        //    //Create("title", "author", "content");
+        //    //Update(10, "Update Title", "Update Author", "Update Content");
+        //    //Delete(13);
+        //    Read();
+        //}
+
+        public void Generate(int count)
         {
-            //            Read();
-            //Edit(1);
-            //Edit(11);
-            //Create("title", "author", "content");
-            //Update(10, "Update Title", "Update Author", "Update Content");
-            //Delete(13);
-            Read();
+            for (int i = 0; i < count; i++)
+            {
+            int rowNo = i + 1;
+                Create("Title " + rowNo, "Author " + rowNo, "Content " + rowNo);
+            }
         }
 
         private readonly IDbConnection _db = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);

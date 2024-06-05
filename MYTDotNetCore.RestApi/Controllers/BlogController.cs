@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using MYTDotNetCore.RestApi.Db;
 using MYTDotNetCore.RestApi.Models;
 using Microsoft.Data.Sql;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace MYTDotNetCore.RestApi.Controllers
 {
@@ -23,6 +24,27 @@ namespace MYTDotNetCore.RestApi.Controllers
         {
             var lst = _context.Blogs.ToList();
             return Ok(lst);
+        }
+
+        [HttpGet("{pageNo}/{pageSize}")]
+        public IActionResult GetBlog(int pageNo, int pageSize)
+        {
+            var lst = _context.Blogs.Skip((pageNo - 1) * pageSize).Take(pageSize).ToList();
+
+            int rowCount = _context.Blogs.Count();
+            int pageCount = rowCount / pageSize;
+            if (rowCount % pageSize > 0)
+            {
+                pageCount++;
+            }
+            if (pageNo > pageCount) return BadRequest(new { message = "Invalid Page No" });
+            BlogResponseModel model = new();
+            model.Data = lst;
+            model.PageSize = pageSize;
+            model.PageNo = pageNo;
+            model.PageCount = pageCount;
+
+            return Ok(model);
         }
 
         [HttpGet("{id}")]

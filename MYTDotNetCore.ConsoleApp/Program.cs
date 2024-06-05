@@ -18,10 +18,22 @@ Console.WriteLine("Hello, World!");
 // Ado.Net Read
 // CRUD
 
-DapperExample dapperExample = new DapperExample();
-dapperExample.Run();     
+//DapperExample dapperExample = new DapperExample();
+//dapperExample.Generate(491);     
 
 
-EFCoreExample eFCoreExample = new EFCoreExample();
-eFCoreExample.Run();
+//EFCoreExample eFCoreExample = new EFCoreExample();
+int pageSize = 10;
+AppDbContext _db = new AppDbContext();
+int rowCount = _db.Blogs.Count();
+Console.WriteLine($"Row Count is {rowCount}");
+
+int pageCount = rowCount / pageSize;
+if(rowCount % pageSize > 0)
+{
+    pageCount++;
+}
+Console.WriteLine($"Page Count is {pageCount}");
+
+
 Console.ReadKey();
