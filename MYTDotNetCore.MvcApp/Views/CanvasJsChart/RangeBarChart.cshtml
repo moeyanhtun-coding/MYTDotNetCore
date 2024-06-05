@@ -1,0 +1,38 @@
+﻿@model CanvasRangeBarChartResponseModel;
+@{
+    var _series = Model.DataList;
+}
+<div id="chartContainer" style="height: 300px; width: 100%;"></div>
+@section scripts {
+    <script>
+        let _series = @Html.Raw(JsonConvert.SerializeObject(_series));
+        window.onload = function () {
+            var chart = new CanvasJS.Chart("chartContainer", {
+                animationEnabled: true,
+                exportEnabled: true,
+                title: {
+                    text: "Employees Salary in a Company"
+                },
+                axisX: {
+                    title: "Departments"
+                },
+                axisY: {
+                    title: "Salary in USD",
+                    interval: 10,
+                    suffix: "k",
+                    prefix: "$"
+                },
+                data: [{
+                    type: "rangeBar",
+                    showInLegend: true,
+                    yValueFormatString: "$#0.#K",
+                    indexLabel: "{y[#index]}",
+                    legendText: "Department wise Min and Max Salary",
+                    toolTipContent: "<b>{label}</b>: {y[0]} to {y[1]}",
+                    dataPoints:_series
+                }]
+            });
+            chart.render();
+        }
+    </script>
+}

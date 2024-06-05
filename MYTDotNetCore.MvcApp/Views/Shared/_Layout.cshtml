@@ -35,13 +35,23 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
-                                Chart
+                                Apex Chart
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="/ApexChart/PieChart">Pie Chart</a></li>
                                 <li><a class="dropdown-item" href="/ApexChart/DashedLineChart">Dashed Line Chart</a></li>
                                 <li><a class="dropdown-item" href="/ApexChart/RadarChart">Radar Chart</a></li>
                                 <li><a class="dropdown-item" href="/ApexChart/ColumnChart">Column Chart</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                               aria-expanded="false">
+                                CanvasJS Chart
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/CanvasJsChart/BarChart">Bar Chart</a></li>
+                                <li><a class="dropdown-item" href="/CanvasJsChart/RangeBarChart">Range Bar Chart</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -70,7 +80,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-    @await RenderSectionAsync("scripts", required: false)
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/canvasjs/1.7.0/canvasjs.min.js" integrity="sha512-FJ2OYvUIXUqCcPf1stu+oTBlhn54W0UisZB/TNrZaVMHHhYvLBV9jMbvJYtvDe5x/WVaoXZ6KB+Uqe5hT2vlyA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>    @await RenderSectionAsync("scripts", required: false)
 </body>
 
 </html>

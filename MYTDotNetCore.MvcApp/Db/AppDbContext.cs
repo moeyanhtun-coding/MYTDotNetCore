@@ -13,5 +13,7 @@ namespace MYTDotNetCore.MvcApp.Db
         public DbSet<DashedLineChartModel> PageStatistics { get; set; }
         public DbSet<ApexChartRadarChartModel> ApexChartRadarChart { get; set; }
         public DbSet<ApexChartColumnChartModel> ApexChartColumnChart { get; set; }
+        public DbSet<CanvasBarChartModel> CanvasBarChartModels { get; set; }
+        public DbSet<CanvasRangeBarChartModel> CanvasRangeBarChartModels { get;set; }
     }
 }
