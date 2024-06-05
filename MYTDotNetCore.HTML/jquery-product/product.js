@@ -86,32 +86,6 @@ function deleteProduct(id) {
   );
 }
 
-function uuidv4() {
-  return "10000000-1000-4000-8000-100000000000".replace(/[018]/g, (c) =>
-    (
-      +c ^
-      (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (+c / 4)))
-    ).toString(16)
-  );
-}
-
-function getProduct() {
-  let products = localStorage.getItem(tblProducts);
-  let lst = [];
-  if (products !== null) {
-    lst = JSON.parse(products);
-  }
-  return lst;
-}
-
-function successMessage(message) {
-  Notiflix.Report.success("Success", message, "Okay");
-}
-
-function errorMessage(message) {
-  Notiflix.Report.failure("Failure", message, "Okay");
-}
-
 $("#btnSave").click(function () {
   const name = $("#txtName").val();
   const description = $("#txtDescription").val();
@@ -202,15 +176,6 @@ function addToCartProduct(id) {
   getCartTable();
 }
 
-function getCart() {
-  let carts = localStorage.getItem(tblCart);
-  let lst = [];
-  if (carts !== null) {
-    lst = JSON.parse(carts);
-  }
-  return lst;
-}
-
 function getCartTable() {
   if ($.fn.DataTable.isDataTable("#cartDataTable")) {
     $("#cartDataTable").DataTable().destroy();
@@ -251,7 +216,7 @@ function getCartTable() {
   new DataTable("#cartDataTable");
 }
 
-function deleteCart(id) {
+function deleteCart2(id) {
   Notiflix.Confirm.show(
     "Confirm",
     "Are you sure want ot delete?",
@@ -271,6 +236,17 @@ function deleteCart(id) {
       }, 1000);
     }
   );
+}
+function deleteCart(id) {
+  confirmMessage("Are you sure want to delete?").then(function () {
+    let lst = getCart();
+    let items = lst.filter((x) => x.cartId !== id);
+    lst = items;
+    const cartStr = JSON.stringify(lst);
+    localStorage.setItem(tblCart, cartStr);
+    successMessage("Deleting Successful");
+    getCartTable();
+  });
 }
 
 function plusCart(id) {

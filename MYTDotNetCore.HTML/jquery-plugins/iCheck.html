@@ -46,6 +46,7 @@
 
     <div class="">
       <button id="btn" class="btn btn-primary">Click</button>
+      <button id="btn2" class="btn btn-success">Click2</button>
     </div>
     <script
       type="text/javascript"
@@ -77,6 +78,15 @@
             background: "linear-gradient(to right, #00b09b, #96c93d)",
           },
           onClick: function () {}, // Callback after click
+        }).showToast();
+      });
+      $("#btn2").click(function () {
+        Toastify({
+          text: "This is a toast",
+          className: "info",
+          style: {
+            background: "linear-gradient(to right, #02f7f3, #f70202)",
+          },
         }).showToast();
       });
     </script>
