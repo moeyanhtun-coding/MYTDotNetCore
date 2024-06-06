@@ -7,7 +7,12 @@ namespace MYTDotNetCore.MvcApp.Controllers
 {
     public class BlogPaginationController : Controller
     {
-        private readonly AppDbContext _db = new AppDbContext();
+        private readonly AppDbContext _db;
+
+        public BlogPaginationController(AppDbContext db)
+        {
+            _db = db;
+        }
 
         [ActionName("Index")]
         public IActionResult BlogIndex(int pageNo = 1, int pageSize = 10)

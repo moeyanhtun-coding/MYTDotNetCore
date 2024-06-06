@@ -8,9 +8,9 @@ public class BlogAjaxController : Controller
 {
     private readonly AppDbContext _context;
 
-    public BlogAjaxController()
+    public BlogAjaxController(AppDbContext context)
     {
-        _context = new AppDbContext();
+        _context = context;
     }
 
     [ActionName("Index")]

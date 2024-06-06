@@ -6,7 +6,12 @@ namespace MYTDotNetCore.MvcApp.Controllers
 {
     public class CanvasJsChartController : Controller
     {
-        private readonly AppDbContext _db = new AppDbContext();
+        private readonly AppDbContext _db;
+
+        public CanvasJsChartController(AppDbContext db)
+        {
+            _db = db;
+        }
 
         public IActionResult BarChart()
         {

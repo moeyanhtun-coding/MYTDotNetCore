@@ -1,3 +1,9 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using MYTDotNetCore.MvcApp;
+using MYTDotNetCore.MvcApp.Db;
+using System.Data.SqlClient;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,6 +12,11 @@ builder.Services.AddControllersWithViews().AddJsonOptions(opt =>
     opt.JsonSerializerOptions.PropertyNamingPolicy = null;
 });
 
+builder.Services.AddDbContext<AppDbContext>(opt =>
+{
+    //opt.UseSqlServer(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
+    opt.UseSqlServer(builder.Configuration.GetConnectionString("DbConnection"));
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
