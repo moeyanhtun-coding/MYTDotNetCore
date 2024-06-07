@@ -3,6 +3,7 @@ using Microsoft.Extensions.Options;
 using MYTDotNetCore.MvcApp;
 using MYTDotNetCore.MvcApp.Db;
 using System.Data.SqlClient;
+using System.Transactions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,7 +17,7 @@ builder.Services.AddDbContext<AppDbContext>(opt =>
 {
     //opt.UseSqlServer(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
     opt.UseSqlServer(builder.Configuration.GetConnectionString("DbConnection"));
-});
+}, ServiceLifetime.Transient, ServiceLifetime.Transient);
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
