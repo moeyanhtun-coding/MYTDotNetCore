@@ -3,8 +3,10 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Data.Sql;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using MYTDotNetCore.RestApi.Db;
 using MYTDotNetCore.RestApi.Models;
+using Newtonsoft.Json;
 
 namespace MYTDotNetCore.RestApi.Controllers;
 
@@ -12,17 +14,21 @@ namespace MYTDotNetCore.RestApi.Controllers;
 [ApiController]
 public class BlogController : ControllerBase
 {
+    private readonly ILogger<BlogController> _logger;
     private readonly AppDbContext _context;
 
-    public BlogController()
+    public BlogController(ILogger<BlogController> logger = null)
     {
         _context = new AppDbContext();
+        _logger = logger;
     }
 
     [HttpGet]
     public IActionResult Read()
     {
         var lst = _context.Blogs.ToList();
+        _logger.LogInformation(JsonConvert.SerializeObject(lst, Formatting.Indented));
+        _logger.LogInformation(lst.Count().ToString(), Formatting.Indented);
         return Ok(lst);
     }
 
