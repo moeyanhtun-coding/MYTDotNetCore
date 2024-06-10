@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure.Internal;
 using MYTDotNetCore.MinimalApi.Models;
+using Newtonsoft.Json;
+using Serilog;
 
 namespace MYTDotNetCore.MinimalApi
 {
@@ -37,6 +39,7 @@ namespace MYTDotNetCore.MinimalApi
                 return Results.BadRequest(new { Message = "Invalid PageNo." });
 
             List<TblBlog> lst = _db.Blogs.Pagination(pageNo, pageSize).ToList();
+            Log.Information(JsonConvert.SerializeObject(lst));
             return Results.Ok(lst);
         }
 
