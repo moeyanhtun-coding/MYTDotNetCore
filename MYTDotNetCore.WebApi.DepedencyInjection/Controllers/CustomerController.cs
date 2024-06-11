@@ -5,30 +5,32 @@ using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using MYTDotNetCore.Shared2;
 using MYTDotNetCore.WebApi.DepedencyInjection.Database;
 using MYTDotNetCore.WebApi.DepedencyInjection.Feature.Blog;
+using MYTDotNetCore.WebApi.DepedencyInjection.Feature.Customer;
 using MYTDotNetCore.WebApi.DepedencyInjection.Models.BlogModel;
+using MYTDotNetCore.WebApi.DepedencyInjection.Models.CustomerModel;
 
 namespace MYTDotNetCore.WebApi.DepedencyInjection.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class BlogController : ControllerBase
+public class CustomerController : ControllerBase
 {
-    private readonly BL_Blog _bL_Blog;
+    private readonly BL_Customer _bL_Customer;
     private readonly AppDbContext _context;
 
-    public BlogController(AppDbContext context, BL_Blog bL_Blog)
+    public CustomerController(AppDbContext context, BL_Customer bL_Customer)
     {
         _context = context;
-        _bL_Blog = bL_Blog;
+        _bL_Customer = bL_Customer;
     }
 
-    [HttpGet("BlogList/{pageNo}/{pageSize}")]
-    public async Task<IActionResult> GetBlogListAsync(int pageNo, int pageSize)
+    [HttpGet("CustomerList/{pageNo}/{pageSize}")]
+    public async Task<IActionResult> GetCustomerListAsync(int pageNo, int pageSize)
     {
-        var response = new BlogListResponseModel();
+        var response = new CustomerListResponseModel();
         try
         {
-            response = await _bL_Blog.GetBlogListAsync(pageNo, pageSize);
+            response = await _bL_Customer.GetCustomerListAsync(pageNo, pageSize);
         }
         catch (Exception ex)
         {
@@ -38,11 +40,11 @@ public class BlogController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> CreateBlogAsync(BlogModel blogModel)
+    public async Task<IActionResult> CreateCustomerAsync(CustomerModel customerModel)
     {
         try
         {
-            int result = await _bL_Blog.CreateBlogAsync(blogModel);
+            int result = await _bL_Customer.CreateCustomerAsync(customerModel);
             var message = (result > 0) ? "Creating Successful" : "Creating Fail";
             return Ok(message);
         }
@@ -53,11 +55,11 @@ public class BlogController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public async Task<IActionResult> GetBlogAsync(int id)
+    public async Task<IActionResult> GetCustomerAsync(int id)
     {
         try
         {
-            var item = await _bL_Blog.GetBlogAsync(id);
+            var item = await _bL_Customer.GetCustomerAsync(id);
             if (item == null)
                 return NotFound("No Item Found");
             return Ok(item);
@@ -68,12 +70,12 @@ public class BlogController : ControllerBase
         }
     }
 
-    [HttpPatch("BlogUpdate/{id}")]
-    public async Task<IActionResult> UpdateBlogAsync(int id, BlogModel blogModel)
+    [HttpPatch("CustomerUpdate/{id}")]
+    public async Task<IActionResult> UpdateCustomerAsync(int id, CustomerModel customerModel)
     {
         try
         {
-            var result = await _bL_Blog.UpdateBlogAsync(id, blogModel);
+            var result = await _bL_Customer.UpdateCustomerAsync(id, customerModel);
             var message = result > 0 ? "Updating Successful" : "Updating Fail";
             return Ok(message);
         }
@@ -84,11 +86,11 @@ public class BlogController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteBlogAsync(int id)
+    public async Task<IActionResult> DeleteCustomerAsync(int id)
     {
         try
         {
-            var result = await _bL_Blog.DeleteBlogAsync(id);
+            var result = await _bL_Customer.DeleteCustomerAsync(id);
             var message = result > 0 ? "Deleting Successful" : "Deleting Fail";
             return Ok(message);
         }

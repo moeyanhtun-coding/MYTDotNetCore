@@ -1,6 +1,6 @@
 ﻿using Azure;
 using Microsoft.EntityFrameworkCore;
-using MYTDotNetCore.WebApi.DepedencyInjection.Models;
+using MYTDotNetCore.WebApi.DepedencyInjection.Models.BlogModel;
 
 namespace MYTDotNetCore.WebApi.DepedencyInjection.Feature.Blog;
 

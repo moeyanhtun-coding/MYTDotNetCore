@@ -9,5 +9,6 @@ namespace MYTDotNetCore.WebApi.DepedencyInjection.Database
             : base(options) { }
 
         public DbSet<TblBlog> Blogs { get; set; }
+        public DbSet<TblCustomer> Customers { get; set; }
     }
 }

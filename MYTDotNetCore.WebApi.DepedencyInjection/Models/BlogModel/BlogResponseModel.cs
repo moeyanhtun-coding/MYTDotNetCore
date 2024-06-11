@@ -1,4 +1,4 @@
-﻿namespace MYTDotNetCore.WebApi.DepedencyInjection.Models
+﻿namespace MYTDotNetCore.WebApi.DepedencyInjection.Models.BlogModel
 {
     public class BlogResponseModel
     {

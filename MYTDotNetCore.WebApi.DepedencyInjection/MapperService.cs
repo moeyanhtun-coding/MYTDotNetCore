@@ -1,4 +1,8 @@
-﻿using MYTDotNetCore.WebApi.DepedencyInjection.Models;
+﻿using Microsoft.Identity.Client;
+using MYTDotNetCore.WebApi.DepedencyInjection.Database;
+using MYTDotNetCore.WebApi.DepedencyInjection.Models;
+using MYTDotNetCore.WebApi.DepedencyInjection.Models.BlogModel;
+using MYTDotNetCore.WebApi.DepedencyInjection.Models.CustomerModel;
 
 namespace MYTDotNetCore.WebApi.DepedencyInjection
 {
@@ -22,6 +26,28 @@ namespace MYTDotNetCore.WebApi.DepedencyInjection
                 BlogTitle = responseModel.BlogTitle,
                 BlogAuthor = responseModel.BlogAuthor,
                 BlogContent = responseModel.BlogContent,
+            };
+            return model;
+        }
+
+        public static TblCustomer Change(this CustomerModel requestModel)
+        {
+            var model = new TblCustomer()
+            {
+                CustomerName = requestModel.CustomerName,
+                CustomerCode = Guid.NewGuid().ToString(),
+                MobileNo = requestModel.MobileNo,
+            };
+            return model;
+        }
+
+        public static CustomerModel Change(this TblCustomer responseModel)
+        {
+            var model = new CustomerModel()
+            {
+                CustomerName = responseModel.CustomerName,
+                CustomerCode = Guid.NewGuid().ToString(),
+                MobileNo = responseModel.MobileNo,
             };
             return model;
         }
