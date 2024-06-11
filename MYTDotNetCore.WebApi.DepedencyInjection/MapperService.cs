@@ -4,11 +4,10 @@ namespace MYTDotNetCore.WebApi.DepedencyInjection
 {
     public static class MapperService
     {
-        public static BlogModel Change(this TblBlog requestModel)
+        public static TblBlog Change(this BlogModel requestModel)
         {
-            var model = new BlogModel()
+            var model = new TblBlog()
             {
-                BlogId = Ulid.NewUlid().ToString(),
                 BlogTitle = requestModel.BlogTitle,
                 BlogAuthor = requestModel.BlogAuthor,
                 BlogContent = requestModel.BlogContent,
@@ -16,13 +15,13 @@ namespace MYTDotNetCore.WebApi.DepedencyInjection
             return model;
         }
 
-        public static BlogRequestModel Chage(this TblBlog requestModel)
+        public static BlogModel Change(this TblBlog responseModel)
         {
-            var model = new BlogRequestModel()
+            var model = new BlogModel()
             {
-                BlogTitle = requestModel.BlogTitle,
-                BlogAuthor = requestModel.BlogAuthor,
-                BlogContent = requestModel.BlogContent,
+                BlogTitle = responseModel.BlogTitle,
+                BlogAuthor = responseModel.BlogAuthor,
+                BlogContent = responseModel.BlogContent,
             };
             return model;
         }

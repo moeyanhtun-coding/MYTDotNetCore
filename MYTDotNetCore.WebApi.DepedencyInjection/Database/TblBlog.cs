@@ -7,7 +7,7 @@ namespace MYTDotNetCore.WebApi.DepedencyInjection.Models
     public class TblBlog
     {
         [Key]
-        public string BlogId { get; set; }
+        public int BlogId { get; set; }
         public string BlogTitle { get; set; }
         public string BlogAuthor { get; set; }
         public string BlogContent { get; set; }
