@@ -1,3 +1,4 @@
+using MYTDotNetCore.Shared2;
 using Serilog;
 
 Log.Logger = new LoggerConfiguration()
