@@ -46,7 +46,7 @@ namespace MYTDotNetCore.WebApi.DepedencyInjection
             var model = new CustomerModel()
             {
                 CustomerName = responseModel.CustomerName,
-                CustomerCode = Guid.NewGuid().ToString(),
+                CustomerCode = responseModel.CustomerCode,
                 MobileNo = responseModel.MobileNo,
             };
             return model;

@@ -41,8 +41,8 @@
                     <td>@blog.BlogAuthor</td>
                     <td>@blog.BlogContent</td>
                     <td>
-                        <a href="" class="btn btn-warning">Edit</a>
-                        <a href="" class="btn btn-danger">Delete</a>
+                        <button type="button" class="btn btn-warning" @onclick="()=> Edit(blog.BlogId)">Edit</button>
+                        <button type="button" class="btn btn-danger"  @onclick="()=> Delete(blog.BlogId)">Delete</button>
                     </td>
                 </tr>
             }
@@ -175,10 +175,36 @@
 
     private async Task Save()
     {
-        await _db.Blogs.AddAsync(requestModel);
+        if (requestModel.BlogId == 0)
+        {
+            await _db.Blogs.AddAsync(requestModel);
+        }
+        else
+        {
+            var item = await _db.Blogs.FirstOrDefaultAsync(x => x.BlogId == requestModel.BlogId);
+            if (item is null) return;
+            item.BlogTitle = requestModel.BlogTitle;
+            item.BlogAuthor = requestModel.BlogAuthor;
+            item.BlogContent = requestModel.BlogContent;
+        }
         await _db.SaveChangesAsync();
         requestModel = new();
-      await List();
+        await List();
+    }
 
+    private async Task Edit(int id)
+    {
+        var result = await _db.Blogs.AsNoTracking().FirstOrDefaultAsync(x => x.BlogId == id);
+        if (result is null) return;
+        requestModel = result;
+        StateHasChanged();
+    }
+
+    private async Task Delete(int id){
+        var item = await _db.Blogs.FirstOrDefaultAsync(x => x.BlogId == id);
+        if (item is null) return;
+        _db.Blogs.Remove(item);
+        await _db.SaveChangesAsync();
+        await List();
     }
 }
