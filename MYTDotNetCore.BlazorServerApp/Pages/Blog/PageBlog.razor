@@ -1,0 +1,184 @@
+﻿@page "/blog"
+@using Microsoft.EntityFrameworkCore
+@inject AppDbContext _db;
+
+<PageTitle>Blog</PageTitle>
+
+<div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Blog Title</label>
+    <input type="text" class="form-control" @bind-value="requestModel.BlogTitle">
+</div>
+<div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Blog Author</label>
+    <input type="text" class="form-control" @bind-value="requestModel.BlogAuthor">
+</div>
+<div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Blog Content</label>
+    <input type="text" class="form-control" @bind-value="requestModel.BlogContent">
+</div>
+
+<button class="btn btn-outline-primary" @onclick="Cancel">Cancel</button>
+<button class="btn btn-outline-success" @onclick="Save">Save</button>
+
+@if (lst is not null)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Author</th>
+                <th scope="col">Content</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var blog in lst)
+            {
+                <tr>
+                    <th scope="row">@blog.BlogId</th>
+                    <td>@blog.BlogTitle</td>
+                    <td>@blog.BlogAuthor</td>
+                    <td>@blog.BlogContent</td>
+                    <td>
+                        <a href="" class="btn btn-warning">Edit</a>
+                        <a href="" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @*     <nav aria-label="...">
+        <ul class="pagination">
+            @if (pageNo == 1)
+            {
+                <li class="page-item disabled ">
+                    <a class="page-link">Previous</a>
+                </li>
+            }
+            else
+            {
+                <li class="page-item">
+                    <a class="page-link " href="@GetPageUrl(pageNo-1)">Previous</a>
+                </li>
+            }
+            @if (pageCount <= 9)
+            {
+                for (int i = 1; i <= pageCount; i++)
+                {
+                    if (pageNo == i)
+                    {
+                        <li class="page-item active" aria-current="page">
+                            <a class="page-link" href="@GetPageUrl(i)">@i</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="page-item"><a class="page-link" href="@GetPageUrl(i)">@i</a></li>
+                    }
+                }
+            }
+            else
+            {
+                if (pageNo <= 3 || pageCount - 2 <= pageNo)
+                {
+                    for (int i = 1; i <= 4; i++)
+                    {
+                        if (pageNo == i)
+                        {
+                            <li class="page-item active" aria-current="page">
+                                <a class="page-link" href="@GetPageUrl(i)">@i</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="page-item"><a class="page-link" href="@GetPageUrl(i)">@i</a></li>
+
+                        }
+                    }
+                    <li class="page-item"><a class="page-link" href="#">...</a></li>
+                    for (int i = pageCount - 3; i <= pageCount; i++)
+                    {
+                        if (pageNo == i)
+                        {
+                            <li class="page-item active" aria-current="page">
+                                <a class="page-link" href="@GetPageUrl(i)">@i</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="page-item"><a class="page-link" href="@GetPageUrl(i)">@i</a></li>
+                        }
+                    }
+                }
+                else
+                {
+                    <li class="page-item"><a class="page-link" href="@GetPageUrl(1)">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">...</a></li>
+                    for (int i = pageNo - 2; i <= pageNo + 2; i++)
+                    {
+                        if (pageNo == i)
+                        {
+                            <li class="page-item active" aria-current="page">
+                                <a class="page-link" href="@GetPageUrl(i)">@i</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="page-item"><a class="page-link" href="@GetPageUrl(i)">@i</a></li>
+                        }
+                    }
+                    <li class="page-item"><a class="page-link" href="#">...</a></li>
+                    <li class="page-item"><a class="page-link" href="@GetPageUrl(pageCount)">@pageCount</a></li>
+
+                }
+            }
+            @if (pageNo == pageCount)
+            {
+                <li class="page-item disabled ">
+                    <a class="page-link">Next</a>
+                </li>
+            }
+            else
+            {
+                <li class="page-item">
+                    <a class="page-link" href="@GetPageUrl(pageNo+1)">Next</a>
+                </li>
+            }
+        </ul>
+    </nav>
+ *@
+}
+
+
+@code {
+    private TblBlog requestModel = new();
+    private List<TblBlog>? lst;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await List();
+    }
+
+    private async Task List()
+    {
+        lst = await _db.Blogs
+             .OrderByDescending(x => x.BlogId)
+             .Take(10)
+             .ToListAsync();
+    }
+
+    private void Cancel()
+    {
+        requestModel = new();
+    }
+
+    private async Task Save()
+    {
+        await _db.Blogs.AddAsync(requestModel);
+        await _db.SaveChangesAsync();
+        requestModel = new();
+      await List();
+
+    }
+}
