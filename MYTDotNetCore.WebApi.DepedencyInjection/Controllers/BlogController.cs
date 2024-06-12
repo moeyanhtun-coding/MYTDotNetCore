@@ -9,7 +9,7 @@ using MYTDotNetCore.WebApi.DepedencyInjection.Models.BlogModel;
 
 namespace MYTDotNetCore.WebApi.DepedencyInjection.Controllers;
 
-[Route("api/[controller]")]
+[Route("apiV1/[controller]")]
 [ApiController]
 public class BlogController : ControllerBase
 {
@@ -22,7 +22,7 @@ public class BlogController : ControllerBase
         _bL_Blog = bL_Blog;
     }
 
-    [HttpGet("BlogList/{pageNo}/{pageSize}")]
+    [HttpGet("{pageNo}/{pageSize}")]
     public async Task<IActionResult> GetBlogListAsync(int pageNo, int pageSize)
     {
         var response = new BlogListResponseModel();
@@ -68,7 +68,7 @@ public class BlogController : ControllerBase
         }
     }
 
-    [HttpPatch("BlogUpdate/{id}")]
+    [HttpPatch("{id}")]
     public async Task<IActionResult> UpdateBlogAsync(int id, BlogModel blogModel)
     {
         try

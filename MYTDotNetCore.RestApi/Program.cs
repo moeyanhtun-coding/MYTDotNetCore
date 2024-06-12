@@ -1,6 +1,8 @@
 using MYTDotNetCore.Shared2;
 using Serilog;
 
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
 Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()
     .WriteTo.File("logs/MYTDotNetCore.txt", rollingInterval: RollingInterval.Day)
@@ -8,7 +10,22 @@ Log.Logger = new LoggerConfiguration()
 try
 {
     Log.Information("Starting web application");
+
     var builder = WebApplication.CreateBuilder(args);
+    builder.Services.AddCors(options =>
+    {
+        options.AddPolicy(
+            name: MyAllowSpecificOrigins,
+            policy =>
+            {
+                policy
+                    .WithOrigins("https://localhost:7273", "http://localhost:5140")
+                    .AllowAnyHeader()
+                    .AllowAnyMethod();
+                ;
+            }
+        );
+    });
     builder.Services.AddSerilog(); // <-- Add this line
 
     // Add services to the container.
@@ -28,6 +45,7 @@ try
     }
 
     app.UseHttpsRedirection();
+    app.UseCors(MyAllowSpecificOrigins);
 
     app.UseAuthorization();
 

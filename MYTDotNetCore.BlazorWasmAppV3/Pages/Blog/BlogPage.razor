@@ -1,0 +1,92 @@
+﻿@page "/blog";
+@using System.Text
+@using static System.Net.Mime.MediaTypeNames
+@inject HttpClient HttpClient;
+@inject IJSRuntime JsRuntime;
+<h3>BlogPage</h3>
+
+<PageTitle>Blog</PageTitle>
+
+<div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Blog Title</label>
+    <input type="text" class="form-control" @bind-value="requestModel.BlogTitle">
+</div>
+<div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Blog Author</label>
+    <input type="text" class="form-control" @bind-value="requestModel.BlogAuthor">
+</div>
+<div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Blog Content</label>
+    <input type="text" class="form-control" @bind-value="requestModel.BlogContent">
+</div>
+<button type="button" @onclick="Save" class="btn btn-outline-success">Save</button>
+
+@if (blogs is not null)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Author</th>
+                <th scope="col">Content</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var blog in blogs)
+            {
+                <tr>
+                    <th scope="row">@blog.BlogId</th>
+                    <td>@blog.BlogTitle</td>
+                    <td>@blog.BlogAuthor</td>
+                    <td>@blog.BlogContent</td>
+@*                     <td>
+                        <button type="button" class="btn btn-warning" @onclick="()=> Edit(blog.BlogId)">Edit</button>
+                        <button type="button" class="btn btn-danger" @onclick="()=> Delete(blog.BlogId)">Delete</button>
+                    </td> *@
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+@code {
+    private BlogModel requestModel = new();
+    private readonly string apiEndPoint = "api/blog";
+    private List<BlogModel> blogs = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await List();
+    }
+
+    public async Task List()
+    {
+        var response = await HttpClient.GetAsync(apiEndPoint);
+        if (response.IsSuccessStatusCode)
+        {
+            var json = await response.Content.ReadAsStringAsync();
+            blogs = JsonConvert.DeserializeObject<List<BlogModel>>(json)!;
+        }
+    }
+
+    public async Task Save()
+    {
+        var blogJson = JsonConvert.SerializeObject(requestModel);
+        var httpContent = new StringContent(blogJson, Encoding.UTF8, "application/json");
+        var response = await HttpClient.PostAsync(apiEndPoint, httpContent);
+        if (response.IsSuccessStatusCode)
+        {
+            var message = await response.Content.ReadAsStringAsync();
+            await JsRuntime.InvokeVoidAsync("alert", message);
+            requestModel = new();
+            await List();
+        }
+        else
+        {
+            var errorMessage = await response.Content.ReadAsStringAsync();
+            await JsRuntime.InvokeVoidAsync("alert", $"Error: {errorMessage}");
+        }
+    }
+
+}

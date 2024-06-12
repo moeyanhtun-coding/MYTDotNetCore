@@ -26,7 +26,7 @@ public class BlogController : ControllerBase
     [HttpGet]
     public IActionResult Read()
     {
-        var lst = _context.Blogs.ToList();
+        var lst = _context.Blogs.OrderByDescending(x => x.BlogId).ToList();
         _logger.LogInformation(JsonConvert.SerializeObject(lst, Formatting.Indented));
         _logger.LogInformation(lst.Count().ToString(), Formatting.Indented);
         return Ok(lst);
@@ -66,11 +66,16 @@ public class BlogController : ControllerBase
     }
 
     [HttpPost]
-    public IActionResult Create(BlogModel blog)
+    public IActionResult CreateBlog([FromBody] BlogModel blog)
     {
+        if (blog == null || !ModelState.IsValid)
+        {
+            return BadRequest("Invalid blog data.");
+        }
+
         _context.Blogs.Add(blog);
         int result = _context.SaveChanges();
-        var message = result > 0 ? "Created Success" : "Created Fail";
+        string message = result > 0 ? "Saving Successful." : "Saving Failed.";
         return Ok(message);
     }
 
