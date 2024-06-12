@@ -1,0 +1,98 @@
+﻿@page "/blog";
+<h3>BlogPage</h3>
+<PageTitle>Blog</PageTitle>
+
+<h1>Count : @Blogs.Count</h1>
+<div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Blog Title</label>
+    <input type="text" class="form-control" @bind-value="requestModel.BlogTitle">
+</div>
+<div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Blog Author</label>
+    <input type="text" class="form-control" @bind-value="requestModel.BlogAuthor">
+</div>
+<div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Blog Content</label>
+    <input type="text" class="form-control" @bind-value="requestModel.BlogContent">
+</div>
+
+<button class="btn btn-outline-primary" @onclick="Cancel">Cancel</button>
+@if(requestModel.BlogId is null)
+{
+    <button class="btn btn-outline-success" @onclick="Save">Save</button>
+} else if(requestModel.BlogId is not null)
+{
+    <button class="btn btn-outline-success" @onclick="Update">Save</button>
+}
+
+@if (Blogs is not null)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Author</th>
+                <th scope="col">Content</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var blog in Blogs)
+            {
+                <tr>
+                    <th scope="row">@blog.BlogId</th>
+                    <td>@blog.BlogTitle</td>
+                    <td>@blog.BlogAuthor</td>
+                    <td>@blog.BlogContent</td>
+                    <td>
+                        <button type="button" class="btn btn-warning" @onclick="()=> Edit(blog.BlogId)">Edit</button>
+                        <button type="button" class="btn btn-danger" @onclick="()=> Delete(blog.BlogId)">Delete</button> 
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @code {
+
+    private BlogModel requestModel = new();
+    private List<BlogModel> Blogs = new();
+
+        private void Save()
+        {
+            requestModel.BlogId = Guid.NewGuid().ToString();
+            Blogs.Add(requestModel);
+            requestModel = new();
+
+        }
+
+        private void Cancel()
+        {
+            requestModel = new();
+        }
+
+        private void Edit (string id)
+        {
+            var item = Blogs.FirstOrDefault(x => x.BlogId == id)!;
+
+            requestModel.BlogId = item.BlogId;
+            requestModel.BlogTitle = item.BlogTitle;
+            requestModel.BlogAuthor = item.BlogAuthor;
+            requestModel.BlogContent = item.BlogContent;
+        }
+
+        private void Update()
+        {
+            int index = Blogs.FindIndex(x => x.BlogId == requestModel.BlogId)!;
+            Blogs[index] = requestModel;
+
+            requestModel = new();
+        }
+
+        private void Delete(string id)
+        {
+            int index = Blogs.FindIndex(x => x.BlogId == id);
+            Blogs.RemoveAt(index);
+        }
+    }
+}

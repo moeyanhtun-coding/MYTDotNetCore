@@ -49,15 +49,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MYTDotNetCore.ConsoleApp2",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MYTDotNetCore.WebApi.DepedencyInjection", "MYTDotNetCore.WebApi.DepedencyInjection\MYTDotNetCore.WebApi.DepedencyInjection.csproj", "{CA090B76-1040-4B39-AD85-28B251F47C9B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MYTDotNetCore.BlazorServerApp", "MYTDotNetCore.BlazorServerApp\MYTDotNetCore.BlazorServerApp.csproj", "{CBCAD58C-34C7-465D-A20C-082BCB22D93A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MYTDotNetCore.BlazorServerApp", "MYTDotNetCore.BlazorServerApp\MYTDotNetCore.BlazorServerApp.csproj", "{CBCAD58C-34C7-465D-A20C-082BCB22D93A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MYTDotNetCore.BlazorWasmApp", "MYTDotNetCore.BlazorWasmApp\MYTDotNetCore.BlazorWasmApp.csproj", "{6E1A63A4-C3E8-4786-940E-267BA2098B1E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MYTDotNetCore.BlazorWasmApp", "MYTDotNetCore.BlazorWasmApp\MYTDotNetCore.BlazorWasmApp.csproj", "{6E1A63A4-C3E8-4786-940E-267BA2098B1E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MYTDotNetCore.BlazorClientServer.Server", "MYTDotNetCore.BlazorClientServer\Server\MYTDotNetCore.BlazorClientServer.Server.csproj", "{0F7F8DE6-3AB9-4447-8F30-0BFD79A50096}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MYTDotNetCore.BlazorClientServer.Server", "MYTDotNetCore.BlazorClientServer\Server\MYTDotNetCore.BlazorClientServer.Server.csproj", "{0F7F8DE6-3AB9-4447-8F30-0BFD79A50096}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MYTDotNetCore.BlazorClientServer.Client", "MYTDotNetCore.BlazorClientServer\Client\MYTDotNetCore.BlazorClientServer.Client.csproj", "{789F01BB-278C-434D-A0A4-72B557600C4F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MYTDotNetCore.BlazorClientServer.Client", "MYTDotNetCore.BlazorClientServer\Client\MYTDotNetCore.BlazorClientServer.Client.csproj", "{789F01BB-278C-434D-A0A4-72B557600C4F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MYTDotNetCore.BlazorClientServer.Shared", "MYTDotNetCore.BlazorClientServer\Shared\MYTDotNetCore.BlazorClientServer.Shared.csproj", "{649CE4B6-D36E-490E-833D-D0E7E94EC962}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MYTDotNetCore.BlazorClientServer.Shared", "MYTDotNetCore.BlazorClientServer\Shared\MYTDotNetCore.BlazorClientServer.Shared.csproj", "{649CE4B6-D36E-490E-833D-D0E7E94EC962}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MYTDotNetCore.BlazorWasmAppV2", "MYTDotNetCore.BlazorWasmAppV2\MYTDotNetCore.BlazorWasmAppV2.csproj", "{3510F029-4452-4FD4-838B-A387EDE0FAB7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -165,6 +167,10 @@ Global
 		{649CE4B6-D36E-490E-833D-D0E7E94EC962}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{649CE4B6-D36E-490E-833D-D0E7E94EC962}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{649CE4B6-D36E-490E-833D-D0E7E94EC962}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3510F029-4452-4FD4-838B-A387EDE0FAB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3510F029-4452-4FD4-838B-A387EDE0FAB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3510F029-4452-4FD4-838B-A387EDE0FAB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3510F029-4452-4FD4-838B-A387EDE0FAB7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
