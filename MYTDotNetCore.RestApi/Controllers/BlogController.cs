@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 
 namespace MYTDotNetCore.RestApi.Controllers;
 
-[Route("api/[controller]")]
+[Route("api/v1/[controller]")]
 [ApiController]
 public class BlogController : ControllerBase
 {
