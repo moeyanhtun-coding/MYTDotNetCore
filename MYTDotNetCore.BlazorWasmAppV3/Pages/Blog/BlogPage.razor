@@ -19,7 +19,14 @@
     <label for="exampleFormControlInput1" class="form-label">Blog Content</label>
     <input type="text" class="form-control" @bind-value="requestModel.BlogContent">
 </div>
-<button type="button" @onclick="Save" class="btn btn-outline-success">Save</button>
+@if (requestModel.BlogId == 0)
+{
+    <button type="button" @onclick="Save" class="btn btn-outline-success">Save</button>
+}
+else if (requestModel.BlogId != 0)
+{
+    <button type="button" @onclick="Update" class="btn btn-outline-success">Save</button>
+}
 
 @if (blogs is not null)
 {
@@ -41,10 +48,10 @@
                     <td>@blog.BlogTitle</td>
                     <td>@blog.BlogAuthor</td>
                     <td>@blog.BlogContent</td>
-@*                     <td>
+                    <td>
                         <button type="button" class="btn btn-warning" @onclick="()=> Edit(blog.BlogId)">Edit</button>
                         <button type="button" class="btn btn-danger" @onclick="()=> Delete(blog.BlogId)">Delete</button>
-                    </td> *@
+                    </td>
                 </tr>
             }
         </tbody>
@@ -86,6 +93,53 @@
         {
             var errorMessage = await response.Content.ReadAsStringAsync();
             await JsRuntime.InvokeVoidAsync("alert", $"Error: {errorMessage}");
+        }
+    }
+
+    public async Task Edit(int id)
+    {
+        var response = await HttpClient.GetAsync($"{apiEndPoint}/{id}");
+        if (response.IsSuccessStatusCode)
+        {
+            var jsonStr = await response.Content.ReadAsStringAsync();
+            var blog = JsonConvert.DeserializeObject<BlogModel>(jsonStr)!;
+            requestModel.BlogId = blog.BlogId;
+            requestModel.BlogTitle = blog.BlogTitle;
+            requestModel.BlogAuthor = blog.BlogAuthor;
+            requestModel.BlogContent = blog.BlogContent;
+            StateHasChanged();
+        }
+    }
+
+    public async Task Update()
+    {
+        var blogJson = JsonConvert.SerializeObject(requestModel);
+        var httpContent = new StringContent(blogJson, Encoding.UTF8, "application/json");
+        var response = await HttpClient.PatchAsync($"{apiEndPoint}/{requestModel.BlogId}", httpContent);
+        if (response.IsSuccessStatusCode)
+        {
+            var message = await response.Content.ReadAsStringAsync();
+            await JsRuntime.InvokeVoidAsync("alert", message);
+            requestModel = new();
+            await List();
+        }
+        else
+        {
+            var errorMessage = await response.Content.ReadAsStringAsync();
+            await JsRuntime.InvokeVoidAsync("alert", $"Error: {errorMessage}");
+        }
+    }
+
+    public async Task Delete(int id)
+    {
+        var result = await JsRuntime.InvokeAsync<bool>("confirm", "Are you sure want to delete?");
+        if (!result) return;
+        var response = await HttpClient.DeleteAsync($"{apiEndPoint}/{id}");
+        if (response.IsSuccessStatusCode)
+        {
+            var message = await response.Content.ReadAsStringAsync();
+            await JsRuntime.InvokeVoidAsync("alert", message);
+            await List();
         }
     }
 
