@@ -1,12 +1,16 @@
 ﻿@page "/blazorComponent";
+@using MudBlazor;
+@using MudBlazor.Components
 @using System.Text
 @using MYTDotNetCore.BlazorWasmAppV3.Services
 @using static System.Net.Mime.MediaTypeNames
-@inject HttpClientService HttpClientService;
-@inject IJSRuntime JsRuntime;
-<h3>BlogPage</h3>
+@inject IDialogService DialogService
+@inject ISnackbar Snackbar
+
 
 <PageTitle>Blog</PageTitle>
+<MudText Typo="Typo.h6">Blog Table</MudText>
+<MudIconButton Icon="@Icons.Material.Filled.Add" aria-label="Create Blog"></MudIconButton>
 
 @if (responseModel is not null)
 {
@@ -42,8 +46,19 @@
         await List();
     }
 
+    public async Task Popup()
+    {
+       
+        var dialog = await DialogService.ShowAsync<BlogDialog>("Blog Create");
+        var result = await dialog.Result;
 
-    private async Task List()
+        if (!result.Canceled)
+        {
+            await List();
+        }
+    }
+
+    public async Task List()
     {
         responseModel = await HttpClientService.ExecuteAsync<List<BlogModel>>(EndPoints.Blog, EnumHttpMethod.Get);
     }

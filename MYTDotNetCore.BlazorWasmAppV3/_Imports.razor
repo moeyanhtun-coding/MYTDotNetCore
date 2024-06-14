@@ -9,5 +9,11 @@
 @using MYTDotNetCore.BlazorWasmAppV3
 @using MYTDotNetCore.BlazorWasmAppV3.Shared
 @using MYTDotNetCore.BlazorWasmAppV3.Database
-@using Newtonsoft.Json;
-@using MudBlazor;
+
+
+
+@inject HttpClientService HttpClientService
+@inject IDialogService DialogService
+@inject ISnackbar Snackbar
+@inject InjectService InjectService
+@inject NavigationManager Nav

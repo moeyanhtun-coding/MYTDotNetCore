@@ -1,10 +1,4 @@
-﻿using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-using static System.Net.Mime.MediaTypeNames;
-
-namespace MYTDotNetCore.BlazorWasmAppV3.Services
+﻿namespace MYTDotNetCore.BlazorWasmAppV3.Services
 {
     public class HttpClientService
     {

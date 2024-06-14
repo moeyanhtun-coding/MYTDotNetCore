@@ -22,11 +22,10 @@ namespace MYTDotNetCore.WindowFormAppSqlInjection
             //    $"Select * From [dbo].[Tbl_User] Where email = '{txtEmail.Text.Trim()}' and password = '{txtPassword.Text.Trim()}'";
             string query =
                 $"Select * From [dbo].[Tbl_User] Where email = @Email and password = @Password";
-            var model = _dapperService.QueryFirstOrDefault<UserModel>(query, new UserModel
-            {
-                Email = txtEmail.Text.Trim(),
-                Password = txtPassword.Text.Trim()
-            });
+            var model = _dapperService.QueryFirstOrDefault<UserModel>(
+                query,
+                new UserModel { Email = txtEmail.Text.Trim(), Password = txtPassword.Text.Trim() }
+            );
             if (model is null)
             {
                 MessageBox.Show("User doesn't Exit");

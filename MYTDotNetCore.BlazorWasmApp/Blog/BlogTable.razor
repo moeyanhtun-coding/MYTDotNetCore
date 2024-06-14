@@ -1,0 +1,49 @@
+﻿@page "/blogtable";
+@using MudBlazor;
+@using MudBlazor.Components;
+@using MYTDotNetCore.BlazorWasmApp.Services;
+@using MYTDotNetCore.BlazorWasmApp.Database;
+@using System.Net.Http;
+
+
+<h3>BlogTable</h3>
+@{  int count = 0;}
+ <MudSimpleTable Style="overflow-x: auto;">
+    <thead>
+        <tr>
+             <th>No</th>
+             <th>Blog Title</th>
+             <th>Blog Author</th>
+             <th>Blog Content</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in listBlog)
+        {
+            <tr>
+                <td>@(++count)</td>
+                <td>@item.BlogTitle</td>
+                <td>@item.BlogAuthor</td>
+                <td>@item.BlogContent</td>
+            </tr>
+        }
+    </tbody>
+</MudSimpleTable> 
+
+@code{
+    private List<BlogModel>? listBlog;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await List();
+    }
+
+    public async Task List()
+    {
+        listBlog = await HttpClientService.ExecuteAsync<List<BlogModel>>(
+            EndPoints.Blog,
+            EnumHttpMethod.Get
+        );
+    }
+}
+

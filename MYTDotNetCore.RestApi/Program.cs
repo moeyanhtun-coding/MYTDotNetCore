@@ -19,7 +19,7 @@ try
             policy =>
             {
                 policy
-                    .WithOrigins("https://localhost:7273", "http://localhost:5140")
+                    .WithOrigins("https://localhost:7285", "http://localhost:5139")
                     .AllowAnyHeader()
                     .AllowAnyMethod();
                 ;

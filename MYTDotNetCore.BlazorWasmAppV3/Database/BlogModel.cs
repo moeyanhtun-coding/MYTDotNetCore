@@ -12,4 +12,9 @@
     {
         public List<BlogModel> Blogs { get; set; }
     }
+
+    public class ResponseModel
+    {
+        public string responseMessage { get; set; }
+    }
 }
