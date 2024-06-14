@@ -7,4 +7,9 @@
         public string BlogAuthor { get; set; }
         public string BlogContent { get; set; }
     }
+
+    public class ListBlogModel
+    {
+        public List<BlogModel> Blogs { get; set; }
+    }
 }

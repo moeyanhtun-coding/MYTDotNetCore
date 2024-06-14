@@ -1,0 +1,19 @@
+﻿<MudDialog>
+    <TitleContent>
+        <MudText Typo="Typo.h6">
+            <MudIcon Icon="@Icons.Material.Filled.DeleteForever" Class="mr-3 mb-n1" />
+            Delete server?
+        </MudText>
+    </TitleContent>
+    <DialogContent>
+        <MudTextField Value="@reqModel.BlogTitle" Label="Blog Title"/>
+        <MudTextField Value="@reqModel.BlogAuthor" Label="Blog Author"/>
+        <MudTextField Value="@reqModel.BlogContent" Label="Blog Content"/>
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="Cancel">Cancel</MudButton>
+        <MudButton Color="Color.Success" OnClick="Save">Save</MudButton>
+    </DialogActions>
+</MudDialog>
+
+

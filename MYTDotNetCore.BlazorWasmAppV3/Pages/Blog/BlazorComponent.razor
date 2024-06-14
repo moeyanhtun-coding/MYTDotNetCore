@@ -1,0 +1,50 @@
+﻿@page "/blazorComponent";
+@using System.Text
+@using MYTDotNetCore.BlazorWasmAppV3.Services
+@using static System.Net.Mime.MediaTypeNames
+@inject HttpClientService HttpClientService;
+@inject IJSRuntime JsRuntime;
+<h3>BlogPage</h3>
+
+<PageTitle>Blog</PageTitle>
+
+@if (responseModel is not null)
+{
+    int count = 0;
+    <MudSimpleTable Style="overflow-x: auto;">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Blog Title</th>
+                <th>Blog Author</th>
+                <th>Blog Content</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var blog in responseModel)
+            {
+                <tr>
+                    <td>@(++count)</td>
+                    <td>@blog.BlogTitle</td>
+                    <td>@blog.BlogAuthor</td>
+                    <td>@blog.BlogContent</td>
+                </tr>
+            }
+        </tbody>
+    </MudSimpleTable>
+}
+
+@code {
+    private List<BlogModel>? responseModel;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await List();
+    }
+
+
+    private async Task List()
+    {
+        responseModel = await HttpClientService.ExecuteAsync<List<BlogModel>>(EndPoints.Blog, EnumHttpMethod.Get);
+    }
+}

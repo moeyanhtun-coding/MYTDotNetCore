@@ -59,9 +59,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MYTDotNetCore.BlazorClientS
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MYTDotNetCore.BlazorClientServer.Shared", "MYTDotNetCore.BlazorClientServer\Shared\MYTDotNetCore.BlazorClientServer.Shared.csproj", "{649CE4B6-D36E-490E-833D-D0E7E94EC962}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MYTDotNetCore.BlazorWasmAppV2", "MYTDotNetCore.BlazorWasmAppV2\MYTDotNetCore.BlazorWasmAppV2.csproj", "{3510F029-4452-4FD4-838B-A387EDE0FAB7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MYTDotNetCore.BlazorWasmAppV2", "MYTDotNetCore.BlazorWasmAppV2\MYTDotNetCore.BlazorWasmAppV2.csproj", "{3510F029-4452-4FD4-838B-A387EDE0FAB7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MYTDotNetCore.BlazorWasmAppV3", "MYTDotNetCore.BlazorWasmAppV3\MYTDotNetCore.BlazorWasmAppV3.csproj", "{2C807B1F-177D-4170-8ACC-818AFB54305B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MYTDotNetCore.BlazorWasmAppV3", "MYTDotNetCore.BlazorWasmAppV3\MYTDotNetCore.BlazorWasmAppV3.csproj", "{2C807B1F-177D-4170-8ACC-818AFB54305B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

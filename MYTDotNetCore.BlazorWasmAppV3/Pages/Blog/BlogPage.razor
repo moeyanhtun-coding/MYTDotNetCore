@@ -59,7 +59,7 @@ else if (requestModel.BlogId != 0)
 }
 @code {
     private BlogModel requestModel = new();
-    private readonly string apiEndPoint = "api/blog";
+    private readonly string apiEndPoint = "api/v1/blog";
     private List<BlogModel> blogs = new();
 
     protected override async Task OnInitializedAsync()
