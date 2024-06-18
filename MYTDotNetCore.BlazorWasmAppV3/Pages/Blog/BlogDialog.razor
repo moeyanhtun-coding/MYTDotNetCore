@@ -1,10 +1,12 @@
 ﻿@page "/blog-create"
-@inject HttpClientService HttpClientService;
+@inject IHttpClientService HttpClientService;
 @inject IJSRuntime JsRuntime;
 @using MudBlazor;
-@using MudBlazor.Components
-@inject IDialogService DialogService
+@inject IDialogService DalogService
 @inject ISnackbar Snackbar
+@using MYTDotNetCore.BlazorWasmAppV3.Services
+@inject IDialogService DialogService
+@using IDialogService;
 
 <MudDialog>
     <TitleContent>

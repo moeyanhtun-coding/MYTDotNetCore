@@ -45,7 +45,7 @@ namespace MYTDotNetCore.MinimalApi
             return Results.Ok(lst);
         }
 
-        private static IResult CreateBlog(AppDbContext _db, BlogModel blog)
+        private static IResult CreateBlog(AppDbContext _db, BlogRequestModel blog)
         {
             _db.Blogs.Add(blog.Change());
             int result = _db.SaveChanges();

@@ -1,11 +1,29 @@
 using MYTDotNetCore.Shared2;
 using Serilog;
+using Serilog.Sinks.MSSqlServer;
 
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
+string logFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "logs/MYTDotNetCore.txt_");
+
+//Log.Logger = new LoggerConfiguration()
+//    .WriteTo.Console()
+//    .WriteTo.File("logs/MYTDotNetCore.txt_", rollingInterval: RollingInterval.Hour)
+//    .CreateLogger();
+var configuration = new ConfigurationBuilder()
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+    .Build();
+var connection = configuration.GetConnectionString("DbConnection");
 Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()
-    .WriteTo.File("logs/MYTDotNetCore.txt", rollingInterval: RollingInterval.Day)
+    .WriteTo.MSSqlServer(
+        connectionString: connection,
+        sinkOptions: new MSSqlServerSinkOptions
+        {
+            TableName = "LogEvents",
+            AutoCreateSqlTable = true
+        }
+    )
     .CreateLogger();
 try
 {
@@ -19,7 +37,7 @@ try
             policy =>
             {
                 policy
-                    .WithOrigins("https://localhost:7285", "http://localhost:5139")
+                    .WithOrigins("https://localhost:7273", "http://localhost:5140")
                     .AllowAnyHeader()
                     .AllowAnyMethod();
                 ;

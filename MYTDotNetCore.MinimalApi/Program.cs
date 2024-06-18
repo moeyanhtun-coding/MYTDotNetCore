@@ -31,8 +31,9 @@ try
     }
 
     app.UseHttpsRedirection();
+    app.MapBlogs();
 
-    app.MapApiEndpoints();
+
     app.Run();
 }
 catch (Exception ex)

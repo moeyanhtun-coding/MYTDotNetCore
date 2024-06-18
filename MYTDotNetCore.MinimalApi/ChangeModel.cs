@@ -1,10 +1,10 @@
 ﻿using MYTDotNetCore.MinimalApi.Models;
 
-namespace MYTDotNetCore.MinimalApi
-{
+namespace MYTDotNetCore.MinimalApi;
+
     public static class ChangeModel
     {
-        public static TblBlog Change(this BlogModel model)
+        public static TblBlog Change(this BlogRequestModel model)
         {
             return new TblBlog
             {
@@ -14,4 +14,4 @@ namespace MYTDotNetCore.MinimalApi
             };
         }
     }
-}
+

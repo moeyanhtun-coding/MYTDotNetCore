@@ -1,16 +1,17 @@
-﻿@page "/blazorComponent";
+﻿@* @page "/blazorComponent";
+@inject HttpClientService HttpClientService;
+@inject IDialogService DialogService;
+@inject ISnackbar Snackbar
 @using MudBlazor;
 @using MudBlazor.Components
 @using System.Text
 @using MYTDotNetCore.BlazorWasmAppV3.Services
 @using static System.Net.Mime.MediaTypeNames
-@inject IDialogService DialogService
-@inject ISnackbar Snackbar
-
+@using MudBlazor.Dialog;
 
 <PageTitle>Blog</PageTitle>
 <MudText Typo="Typo.h6">Blog Table</MudText>
-<MudIconButton Icon="@Icons.Material.Filled.Add" aria-label="Create Blog"></MudIconButton>
+<MudIconButton Icon="@Icons.Material.Filled.Add" aria-label="Create Blog" OnClick="Popup"></MudIconButton>
 
 @if (responseModel is not null)
 {
@@ -48,8 +49,77 @@
 
     public async Task Popup()
     {
-       
-        var dialog = await DialogService.ShowAsync<BlogDialog>("Blog Create");
+        var dialog = await DialogService.ShowAsync<BlogDialog>("Blog Table");
+        var result = await dialog.Result;
+
+        if (!result.Canceled)
+        {
+            await List();
+        }
+    }
+
+    public async Task List()
+    {
+        responseModel = await HttpClientService.ExecuteAsync<List<BlogModel>>(EndPoints.Blog, EnumHttpMethod.Get);
+    }
+} *@
+
+    @page "/blazorComponent";
+@inject HttpClientService HttpClientService;
+@inject IDialogService DialogService;
+@inject ISnackbar Snackbar
+@using MudBlazor;
+@using MudBlazor.Components
+@using System.Text
+@using MYTDotNetCore.BlazorWasmAppV3.Services
+@using static System.Net.Mime.MediaTypeNames
+
+<PageTitle>Blog</PageTitle>
+<MudText Typo="Typo.h6">Blog Table</MudText>
+<MudIconButton Icon="@Icons.Material.Filled.Add" aria-label="Create Blog" OnClick="Popup"></MudIconButton>
+
+@if (responseModel is not null)
+{
+    int count = 0;
+    <MudSimpleTable Style="overflow-x: auto;">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Blog Title</th>
+                <th>Blog Author</th>
+                <th>Blog Content</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var blog in responseModel)
+            {
+                <tr>
+                    <td>@(++count)</td>
+                    <td>@blog.BlogTitle</td>
+                    <td>@blog.BlogAuthor</td>
+                    <td>@blog.BlogContent</td>
+                </tr>
+            }
+        </tbody>
+    </MudSimpleTable>
+}
+
+@code {
+    private List<BlogModel>? responseModel;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await List();
+    }
+
+    public async Task Popup()
+    {
+        var parameters = new DialogParameters();
+        parameters.Add("Title", "Create a new blog");
+
+        var options = new DialogOptions { CloseButton = true, MaxWidth = MaxWidth.Medium };
+
+        var dialog = DialogService.Show<BlogDialog>("Blog Table", parameters, options);
         var result = await dialog.Result;
 
         if (!result.Canceled)

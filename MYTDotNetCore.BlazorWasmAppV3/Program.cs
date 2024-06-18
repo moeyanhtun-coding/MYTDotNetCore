@@ -9,6 +9,7 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 
 builder.Services.AddMudServices();
 builder.Services.AddScoped<HttpClientService>();
+builder.Services.AddScoped<IDialogService>();
 
 string domainUrl = "https://localhost:7088";
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(domainUrl) });
