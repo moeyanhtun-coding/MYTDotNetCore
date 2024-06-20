@@ -38,12 +38,37 @@ public class BlogController : Controller
         return Redirect("/blog");
     }
 
+    [ActionName("edit")]
+    public IActionResult EditBlog(int id)
+    {
+        var item = FindBlog(id).Change();
+        return View("BlogEdit", item);
+    }
+
+    [HttpPost]
+    [ActionName("update")]
+    public IActionResult BlogUpdate(int id, BlogModel model)
+    {
+        var item = FindBlog(id);
+        item.BlogTitle = model.BlogTitle;
+        item.BlogAuthor = model.BlogAuthor;
+        item.BlogContent = model.BlogContent;
+        _context.SaveChanges();
+        return Redirect("/blog");
+    }
+
     [ActionName("delete")]
     public IActionResult BlogDelete(int id)
     {
-        var item = _context.Blogs.FirstOrDefault(x => x.BlogId == id)!;
+        var item = FindBlog(id);
         _context.Blogs.Remove(item);
         _context.SaveChanges();
         return Redirect("/blog");
+    }
+
+    private TblBlogs FindBlog(int id)
+    {
+        var item = _context.Blogs.FirstOrDefault(x => x.BlogId == id)!;
+        return item;
     }
 }
