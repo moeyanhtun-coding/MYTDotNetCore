@@ -4,12 +4,13 @@ using Serilog.Sinks.MSSqlServer;
 
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
-string logFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "logs/MYTDotNetCore.txt_");
+string outputFolderPath = AppDomain.CurrentDomain.BaseDirectory;
+string logFilePath = Path.Combine(outputFolderPath, "logs/MYTDotNetCore.WebApi_.txt");
 
-//Log.Logger = new LoggerConfiguration()
-//    .WriteTo.Console()
-//    .WriteTo.File("logs/MYTDotNetCore.txt_", rollingInterval: RollingInterval.Hour)
-//    .CreateLogger();
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.Console()
+    .WriteTo.File(logFilePath, rollingInterval: RollingInterval.Hour)
+    .CreateLogger();
 var configuration = new ConfigurationBuilder()
     .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
     .Build();

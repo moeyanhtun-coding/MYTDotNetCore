@@ -59,7 +59,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MYTDotNetCore.BlazorClientS
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MYTDotNetCore.BlazorWasmAppV2", "MYTDotNetCore.BlazorWasmAppV2\MYTDotNetCore.BlazorWasmAppV2.csproj", "{3510F029-4452-4FD4-838B-A387EDE0FAB7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MYTDotNetCore.MvcApp3", "MYTDotNetCore.MvcApp3\MYTDotNetCore.MvcApp3.csproj", "{B41CF5C4-DD34-46FD-ADEF-907FAFAF44D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MYTDotNetCore.MvcApp3", "MYTDotNetCore.MvcApp3\MYTDotNetCore.MvcApp3.csproj", "{B41CF5C4-DD34-46FD-ADEF-907FAFAF44D0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MYTDotNetCore.MvcApp.UI", "MYTDotNetCore.MvcApp.UI\MYTDotNetCore.MvcApp.UI.csproj", "{9CE788A7-99A1-4CEB-B1BC-26A15F5B9948}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -171,6 +173,10 @@ Global
 		{B41CF5C4-DD34-46FD-ADEF-907FAFAF44D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B41CF5C4-DD34-46FD-ADEF-907FAFAF44D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B41CF5C4-DD34-46FD-ADEF-907FAFAF44D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CE788A7-99A1-4CEB-B1BC-26A15F5B9948}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CE788A7-99A1-4CEB-B1BC-26A15F5B9948}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CE788A7-99A1-4CEB-B1BC-26A15F5B9948}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CE788A7-99A1-4CEB-B1BC-26A15F5B9948}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

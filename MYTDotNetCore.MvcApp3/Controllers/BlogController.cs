@@ -23,14 +23,14 @@ public class BlogController : Controller
         return View("BlogIndex", model);
     }
 
-    [ActionName("create")]
+    [ActionName("Create")]
     public IActionResult BlogCreate()
     {
         return View("BlogCreate");
     }
 
     [HttpPost]
-    [ActionName("save")]
+    [ActionName("Save")]
     public IActionResult BlogSave(BlogModel model)
     {
         _context.Blogs.Add(model.Change());
@@ -38,7 +38,7 @@ public class BlogController : Controller
         return Redirect("/blog");
     }
 
-    [ActionName("edit")]
+    [ActionName("Edit")]
     public IActionResult EditBlog(int id)
     {
         var item = FindBlog(id).Change();
@@ -46,7 +46,7 @@ public class BlogController : Controller
     }
 
     [HttpPost]
-    [ActionName("update")]
+    [ActionName("Update")]
     public IActionResult BlogUpdate(int id, BlogModel model)
     {
         var item = FindBlog(id);
@@ -57,7 +57,7 @@ public class BlogController : Controller
         return Redirect("/blog");
     }
 
-    [ActionName("delete")]
+    [ActionName("Delete")]
     public IActionResult BlogDelete(int id)
     {
         var item = FindBlog(id);
