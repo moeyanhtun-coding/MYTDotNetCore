@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc;
 using MYTDotNetCore.MvcApp3.Database;
 using MYTDotNetCore.MvcApp3.Models;
 
@@ -19,6 +20,8 @@ public class BlogController : Controller
     {
         var model = new BlogList();
         var lst = _context.Blogs.Select(x => x.Change()).ToList();
+        if (lst is null)
+            return Redirect("/blog");
         model.lst = lst;
         return View("BlogIndex", model);
     }
@@ -42,6 +45,8 @@ public class BlogController : Controller
     public IActionResult EditBlog(int id)
     {
         var item = FindBlog(id).Change();
+        if (item is null)
+            return Redirect("/blog");
         return View("BlogEdit", item);
     }
 
@@ -50,6 +55,8 @@ public class BlogController : Controller
     public IActionResult BlogUpdate(int id, BlogModel model)
     {
         var item = FindBlog(id);
+        if (item is null)
+            return Redirect("/blog");
         item.BlogTitle = model.BlogTitle;
         item.BlogAuthor = model.BlogAuthor;
         item.BlogContent = model.BlogContent;
@@ -61,6 +68,8 @@ public class BlogController : Controller
     public IActionResult BlogDelete(int id)
     {
         var item = FindBlog(id);
+        if (item is null)
+            return Redirect("/blog");
         _context.Blogs.Remove(item);
         _context.SaveChanges();
         return Redirect("/blog");
