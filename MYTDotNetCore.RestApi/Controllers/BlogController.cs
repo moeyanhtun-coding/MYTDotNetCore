@@ -84,14 +84,12 @@ public class BlogController : ControllerBase
     {
         var item = _context.Blogs.FirstOrDefault(x => x.BlogId == id);
         if (item is null)
-        {
-            return NotFound("Data Not Found");
-        }
+            return NotFound("Data Not Found");ှှှ
 
         item.BlogTitle = blog.BlogTitle;
         item.BlogAuthor = blog.BlogAuthor;
         item.BlogContent = blog.BlogContent;
-
+ှ
         _context.Blogs.Update(item);
         int result = _context.SaveChanges();
         var message = result > 0 ? "Updated Success" : "Updated Fail";
@@ -102,23 +100,19 @@ public class BlogController : ControllerBase
     public IActionResult Patch(int id, BlogModel blog)
     {
         var item = _context.Blogs.FirstOrDefault(x => x.BlogId == id);
+        
         if (item is null)
-        {
             return NotFound("Data Not Found");
-        }
-
+        
         if (!string.IsNullOrEmpty(blog.BlogTitle))
-        {
             item.BlogTitle = blog.BlogTitle;
-        }
+        
         if (!string.IsNullOrEmpty(blog.BlogAuthor))
-        {
             item.BlogAuthor = blog.BlogAuthor;
-        }
+        
         if (!string.IsNullOrEmpty(blog.BlogContent))
-        {
             item.BlogContent = blog.BlogContent;
-        }
+        
         _context.Blogs.Update(item);
         int result = _context.SaveChanges();
         var message = result > 0 ? "Updated Success" : "Updated Fail";
@@ -130,9 +124,7 @@ public class BlogController : ControllerBase
     {
         var item = _context.Blogs.FirstOrDefault(x => x.BlogId == id);
         if (item is null)
-        {
             return NotFound("No Dtat Found");
-        }
 
         _context.Blogs.Remove(item);
         int result = _context.SaveChanges();

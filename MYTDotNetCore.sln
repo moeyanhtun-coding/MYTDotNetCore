@@ -63,7 +63,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MYTDotNetCore.MvcApp3", "MY
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MYTDotNetCore.MvcApp.UI", "MYTDotNetCore.MvcApp.UI\MYTDotNetCore.MvcApp.UI.csproj", "{9CE788A7-99A1-4CEB-B1BC-26A15F5B9948}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MYTDotNetCore.RealTimeChartApp.SignalR", "MYTDotNetCore.RealTimeChartApp.SignalR\MYTDotNetCore.RealTimeChartApp.SignalR.csproj", "{8283EF06-BE0D-4591-A30E-4C5AFCE7E780}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MYTDotNetCore.RealTimeChartApp.SignalR", "MYTDotNetCore.RealTimeChartApp.SignalR\MYTDotNetCore.RealTimeChartApp.SignalR.csproj", "{8283EF06-BE0D-4591-A30E-4C5AFCE7E780}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MYTDotNetCore.EFCoreAuto", "MYTDotNetCore.EFCoreAuto\MYTDotNetCore.EFCoreAuto.csproj", "{C53B102D-6508-4C4A-B37D-B51F6B04C585}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -183,6 +185,10 @@ Global
 		{8283EF06-BE0D-4591-A30E-4C5AFCE7E780}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8283EF06-BE0D-4591-A30E-4C5AFCE7E780}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8283EF06-BE0D-4591-A30E-4C5AFCE7E780}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C53B102D-6508-4C4A-B37D-B51F6B04C585}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C53B102D-6508-4C4A-B37D-B51F6B04C585}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C53B102D-6508-4C4A-B37D-B51F6B04C585}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C53B102D-6508-4C4A-B37D-B51F6B04C585}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
