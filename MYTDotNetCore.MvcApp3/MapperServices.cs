@@ -28,4 +28,31 @@ public static class MapperServices
         };
         return model;
     }
+
+    public static TblUser Change(this UserModel requestModel)
+    {
+        var model = new TblUser()
+        {
+            UserID = Guid.NewGuid().ToString(),
+            UserName = requestModel.UserName,
+            Password = requestModel.Password,
+        };
+        return model;
+    }
+
+    public static TblLogin Change(
+        this LoginModel requestModel,
+        string UserId,
+        string sessionId,
+        DateTime sessionExpried
+    )
+    {
+        var model = new TblLogin()
+        {
+            UserID = UserId,
+            SessionID = sessionId,
+            SessionExpired = sessionExpried,
+        };
+        return model;
+    }
 }

@@ -1,0 +1,20 @@
+﻿@{
+    ViewData["Title"] = "SignUp Page";
+}
+<a href="/login" class="btn btn-outline-success">Login</a>
+<h1>SignUp</h1>
+<form action="/signUp" method="post">
+    <div class="row">
+        <div class="offset-4 col-4">
+            <div class="form-group mb-2">
+                <label for="">Username</label>
+                <input type="text" class="form-control" id="" name="UserName" placeholder="Username ..." required>
+            </div>
+            <div class="form-group mb-2">
+                <label for="">Password</label>
+                <input type="text" class="form-control" id="" name="Password" placeholder="Password ..." required>
+            </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </div>
+</form>
