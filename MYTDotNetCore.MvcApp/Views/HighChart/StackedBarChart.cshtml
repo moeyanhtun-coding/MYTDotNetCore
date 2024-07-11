@@ -1,0 +1,39 @@
+﻿@model HighChartStackedBarChartModel;
+@{
+    var _categories = Model.Category;
+    var _series = Model.Serires;
+}
+<div id="container"></div>s
+@section scripts{
+    <script>
+        let categories = @Html.Raw(JsonConvert.SerializeObject(_categories));
+        let series = @Html.Raw(JsonConvert.SerializeObject(_series));
+        Highcharts.chart('container', {
+            chart: {
+                type: 'bar'
+            },
+            title: {
+                text: 'Ferry passengers by vehicle type 2024'
+            },
+            xAxis: categories,
+            yAxis: {
+                min: 0,
+                title: {
+                    text: ''
+                }
+            },
+            legend: {
+                reversed: true
+            },
+            plotOptions: {
+                series: {
+                    stacking: 'normal',
+                    dataLabels: {
+                        enabled: true
+                    }
+                }
+            },
+            series: series
+        });
+    </script>
+}
