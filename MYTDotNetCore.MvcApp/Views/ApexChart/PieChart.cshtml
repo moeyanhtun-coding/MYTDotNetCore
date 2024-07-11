@@ -5,6 +5,7 @@
     List<string> _labels = Model.Labels;
 }
 <div id="chart"></div>  
+
 @section scripts{
     <script>
         let series = @Html.Raw(JsonConvert.SerializeObject(_series));
