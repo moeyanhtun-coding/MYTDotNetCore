@@ -1,0 +1,78 @@
+﻿@model HighChart3DBubbleChartModel;
+@{
+    var _series1 = Model.data1;
+    var _series2 = Model.data2;
+}
+<div id="container"></div>
+@section scripts {
+
+    <script>
+        let data1 = @Html.Raw(JsonConvert.SerializeObject(_series1));
+        let data2 = @Html.Raw(JsonConvert.SerializeObject(_series2));
+        Highcharts.chart('container', {
+
+            chart: {
+                type: 'bubble',
+                plotBorderWidth: 1,
+                zooming: {
+                    type: 'xy'
+                }
+            },
+
+            title: {
+                text: 'Highcharts bubbles with radial gradient fill',
+                align: 'left'
+            },
+
+            xAxis: {
+                gridLineWidth: 1,
+                accessibility: {
+                    rangeDescription: 'Range: 0 to 100.'
+                }
+            },
+
+            yAxis: {
+                startOnTick: false,
+                endOnTick: false,
+                accessibility: {
+                    rangeDescription: 'Range: 0 to 100.'
+                }
+            },
+
+            series: [{
+                data: data1,
+                marker: {
+                    fillColor: {
+                        radialGradient: { cx: 0.4, cy: 0.3, r: 0.7 },
+                        stops: [
+                            [0, 'rgba(255,255,255,0.5)'],
+                            [
+                                1,
+                                Highcharts.color(
+                                    Highcharts.getOptions().colors[0]
+                                ).setOpacity(0.5).get('rgba')
+                            ]
+                        ]
+                    }
+                }
+            }, {
+                data: data2,
+                marker: {
+                    fillColor: {
+                        radialGradient: { cx: 0.4, cy: 0.3, r: 0.7 },
+                        stops: [
+                            [0, 'rgba(255,255,255,0.5)'],
+                            [
+                                1,
+                                Highcharts.color(
+                                    Highcharts.getOptions().colors[1]
+                                ).setOpacity(0.5).get('rgba')
+                            ]
+                        ]
+                    }
+                }
+            }]
+
+        });</script>
+
+}
