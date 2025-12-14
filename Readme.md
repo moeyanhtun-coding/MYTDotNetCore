@@ -39,6 +39,53 @@ This project is ideal for:
 
 ## 🧱 Solution Architecture
 
+This project follows **Clean Architecture principles**, ensuring the system is maintainable, testable, and scalable.
+
+### 🔷 Clean Architecture Layers
+
+```
+Presentation Layer (UI)
+│
+├── Console App
+├── MVC App
+├── Web API
+└── Minimal API
+
+Application Layer
+│
+├── Services (Business Logic)
+├── DTOs
+├── Use Cases
+└── Interfaces
+
+Domain Layer
+│
+├── Entities
+├── Value Objects
+└── Domain Rules
+
+Infrastructure Layer
+│
+├── ADO.NET
+├── Dapper
+├── EF Core
+├── Database Context
+└── External Services
+```
+
+### Dependency Rule
+
+> **Dependencies always point inward**
+
+* UI depends on Application
+* Application depends on Domain
+* Infrastructure depends on Application & Domain
+* Domain depends on nothing
+
+---
+
+## 🧱 Physical Solution Structure
+
 ```
 Solution
 │
